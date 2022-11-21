@@ -18,6 +18,8 @@ public class ScreenshotsAdapter extends PagerAdapter {
             R.drawable.img_onboarding_3
     };
 
+
+
     private LayoutInflater layoutInflater;
     private Context ctx;
 

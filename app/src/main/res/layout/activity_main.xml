@@ -15,44 +15,37 @@
 
     </androidx.viewpager.widget.ViewPager>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="608dp"
-        android:layout_marginEnd="259dp"
-        android:background="@drawable/btnlogin"
-        android:clickable="true"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="@color/black" />
 
     <com.google.android.material.button.MaterialButton
 
-        android:layout_width="120dp"
-        android:layout_height="60dp"
+        android:id="@+id/btnlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="265dp"
+        android:layout_marginBottom="53dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:backgroundTint="#e3d134"
+        app:cornerRadius="15dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnregister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="58dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="53dp"
         android:text="Register"
         android:textAllCaps="false"
         android:textSize="15sp"
-        app:cornerRadius="15dp"/>
-
-    <com.google.android.material.button.MaterialButton
-
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:text="Login"
-        android:textSize="15sp"
-        app:backgroundTint="@android:color/transparent"
-        app:cornerRadius="8dp"
-        app:rippleColor="#33AAAAAA"
-        app:strokeColor="@color/black"
-        app:strokeWidth="2dp" />
+        app:cornerRadius="15dp" />
 
 
 </RelativeLayout>
