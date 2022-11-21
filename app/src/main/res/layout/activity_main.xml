@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/yellow">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/sceensot_slider"
+        android:layout_width="match_parent"
+        android:layout_height="160pt"
+        android:layout_marginTop="100dp">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="608dp"
+        android:layout_marginEnd="259dp"
+        android:background="@drawable/btnlogin"
+        android:clickable="true"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/black" />
+
+    <com.google.android.material.button.MaterialButton
+
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="58dp"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        app:cornerRadius="15dp"/>
+
+    <com.google.android.material.button.MaterialButton
+
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:text="Login"
+        android:textSize="15sp"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="8dp"
+        app:rippleColor="#33AAAAAA"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+
+</RelativeLayout>
