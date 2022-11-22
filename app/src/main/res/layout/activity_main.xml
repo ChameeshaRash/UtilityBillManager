@@ -15,6 +15,23 @@
 
     </androidx.viewpager.widget.ViewPager>
 
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+
+        android:id="@+id/dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dotsColor="@color/black"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="8dp"
+        app:dotsSpacing="8dp"
+        app:dotsWidthFactor="2.5"
+        app:selectedDotColor="@color/black"
+        app:progressMode="true"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/sceensot_slider"
+        android:padding="30dp"
+        />
+
 
     <com.google.android.material.button.MaterialButton
 
@@ -24,7 +41,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="265dp"
-        android:layout_marginBottom="53dp"
+        android:layout_marginBottom="65dp"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/black"
@@ -32,7 +49,8 @@
         app:backgroundTint="#e3d134"
         app:cornerRadius="15dp"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        android:onClick="login"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnregister"
@@ -41,11 +59,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="53dp"
+        android:layout_marginBottom="65dp"
         android:text="Register"
         android:textAllCaps="false"
         android:textSize="15sp"
-        app:cornerRadius="15dp" />
+        app:cornerRadius="15dp"
+        android:onClick="register"/>
 
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.mobileapp.app;
 
-import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import android.content.Context;
@@ -9,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
 
 public class ScreenshotsAdapter extends PagerAdapter {
 
@@ -53,7 +52,7 @@ public class ScreenshotsAdapter extends PagerAdapter {
         View item_view=layoutInflater.inflate(R.layout.activity_screenshots,container,false);
 
         ImageView imageView=(ImageView)item_view.findViewById(R.id.slider_image);
-        TextView textView=(TextView)item_view.findViewById(R.id.textView_Slider);
+        //TextView textView=(TextView)item_view.findViewById(R.id.textView_Slider);
 
         imageView.setImageResource(image_resources[position]);
         //textView.setText(image_text_resources[position]);
