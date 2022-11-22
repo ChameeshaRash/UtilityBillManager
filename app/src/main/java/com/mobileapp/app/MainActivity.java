@@ -15,9 +15,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewPager= findViewById(R.id.sceensot_slider);
+
         adapter =new ScreenshotsAdapter(this);
         viewPager.setAdapter(adapter);
 
 
+
+        
     }
 }

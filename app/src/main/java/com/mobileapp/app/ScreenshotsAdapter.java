@@ -9,14 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class ScreenshotsAdapter extends PagerAdapter {
 
+    //images set of the slider
     private int[] image_resources={
-            R.drawable.img_onboarding_1,
-            R.drawable.img_onboarding_2,
-            R.drawable.img_onboarding_3
+            R.drawable.frame1,
+            R.drawable.frame2,
+            R.drawable.frame3
     };
+//    //text set of the slider
+//    private String[] image_text_resources={
+//            String.valueOf(R.string.text1),
+//            String.valueOf(R.string.text2),
+//            String.valueOf(R.string.text3)
+//
+//    };
 
 
 
@@ -44,13 +53,23 @@ public class ScreenshotsAdapter extends PagerAdapter {
         View item_view=layoutInflater.inflate(R.layout.activity_screenshots,container,false);
 
         ImageView imageView=(ImageView)item_view.findViewById(R.id.slider_image);
+        TextView textView=(TextView)item_view.findViewById(R.id.textView_Slider);
 
         imageView.setImageResource(image_resources[position]);
+        //textView.setText(image_text_resources[position]);
         container.addView(item_view);
+
+
+
+
+
         return item_view;
+
+
+
     }
     @Override
-    public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
+    public void destroyItem(ViewGroup container, int position,  Object object) {
         container.removeView((LinearLayout)object);
     }
 

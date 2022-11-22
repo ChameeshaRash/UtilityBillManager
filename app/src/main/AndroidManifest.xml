@@ -14,7 +14,11 @@
         <activity
             android:name=".ScreenshotsAdapter"
             android:exported="false"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable" >
+
+
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,5 +29,8 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>
