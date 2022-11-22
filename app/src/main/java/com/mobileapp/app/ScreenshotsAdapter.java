@@ -58,10 +58,6 @@ public class ScreenshotsAdapter extends PagerAdapter {
         //textView.setText(image_text_resources[position]);
         container.addView(item_view);
 
-
-
-
-
         return item_view;
 
 

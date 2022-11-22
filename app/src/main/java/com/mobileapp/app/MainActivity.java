@@ -1,9 +1,11 @@
 package com.mobileapp.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
@@ -29,17 +31,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void login(View view) {
+        Intent i = new Intent(MainActivity.this, BottomSheet_Login.class);
+        startActivity(i);
 
-//
-//        country.setText(obj.getCountry());
-//        temperature.setText(obj.getTemperature());
-//        humidity.setText(obj.getHumidity());
-//        pressure.setText(obj.getPressure());
-
+//        BottomSheet_Login bottomSheet = new BottomSheet_Login();
+//        bottomSheet.show(getSupportFragmentManager(),
+//                "ModalBottomSheet");
 
     }
+
+
     public void register(View view) {
 
     }
+
 
 }

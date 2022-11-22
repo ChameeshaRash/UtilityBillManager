@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:background="@color/yellow">
 
+    //Slider Image Viewer
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/sceensot_slider"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
 
     </androidx.viewpager.widget.ViewPager>
 
+    //Indicator
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
         android:id="@+id/dots_indicator"
@@ -32,16 +34,17 @@
         android:padding="30dp"
         />
 
-
+//Login Button
     <com.google.android.material.button.MaterialButton
 
         android:id="@+id/btnlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginEnd="265dp"
         android:layout_marginBottom="65dp"
+        android:onClick="login"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/black"
@@ -49,9 +52,9 @@
         app:backgroundTint="#e3d134"
         app:cornerRadius="15dp"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp"
-        android:onClick="login"/>
+        app:strokeWidth="1dp" />
 
+    //Register Button
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnregister"
         android:layout_width="wrap_content"
