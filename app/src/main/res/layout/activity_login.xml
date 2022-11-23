@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:padding="50dp"
-    tools:context=".Register">
+    tools:context=".Login">
 
 
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Welcome to Utilia!!"
+        android:text="Welcome Back!"
         android:textColor="@color/black"
         android:layout_below="@id/imgLogo"
         tools:layout_editor_absoluteX="28dp"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Let’s create your account"
+        android:text="Let’s continue the journey."
         android:textColor="@color/grey"
         android:layout_below="@id/txtTitle"
         tools:layout_editor_absoluteX="28dp"
@@ -82,7 +82,7 @@
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_email"
@@ -92,38 +92,24 @@
         android:inputType="textPassword"
         android:padding="5dp" />
 
-    //creating a linear layout
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView_forgotPassword"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPassword"
-        android:orientation="horizontal">
+        android:layout_below="@id/editTextTextPassword"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:text="Forgot Password?"
 
-        <RadioButton
-            android:id="@+id/textView_accept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I accept the "
-            />
-        <TextView
-            android:id="@+id/txtCondition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Terms and Conditions."
-            android:textColor="@color/yellow"
-            android:layout_toRightOf="@id/textView_accept"
-            />
-    </LinearLayout>
+        />
 
-//creating Login button
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout1"
+        android:layout_below="@id/textView_forgotPassword"
         android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:padding="8dp"
         android:text="Login"
         android:textAllCaps="false"

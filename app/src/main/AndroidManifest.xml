@@ -15,7 +15,7 @@
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".BottomSheet_Login"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".ScreenshotsAdapter"

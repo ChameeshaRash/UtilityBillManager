@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
@@ -31,17 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void login(View view) {
-        Intent i = new Intent(MainActivity.this, BottomSheet_Login.class);
-        startActivity(i);
+        Intent i1 = new Intent(MainActivity.this, Login.class);
+        startActivity(i1);
 
-//        BottomSheet_Login bottomSheet = new BottomSheet_Login();
-//        bottomSheet.show(getSupportFragmentManager(),
-//                "ModalBottomSheet");
 
     }
 
 
     public void register(View view) {
+        Intent i2 = new Intent(MainActivity.this, Register.class);
+        startActivity(i2);
 
     }
 
