@@ -10,4 +10,27 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Pink">#FD0000</color>
     <color name="grey"> #aaaaaa</color>
+
+    <color name="yellow_100">#775700</color>
+    <color name="yellow_90">#956D00</color>
+    <color name="yellow_80">#BA8800</color>
+    <color name="yellow_60">#FFC901</color>
+    <color name="yellow_40">#EABB3A</color>
+    <color name="yellow_20">#F5D47A</color>
+    <color name="yellow_10">#FFEAB0</color>
+    <color name="grey_100">#2F2F2F</color>
+    <color name="grey_90">#444444</color>
+    <color name="grey_80">#595959</color>
+    <color name="grey_60">#828282</color>
+    <color name="grey_40">#ACACAC</color>
+    <color name="grey_20">#D5D5D5</color>
+    <color name="grey_10">#EBEBEB</color>
+    <color name="green">#90E970</color>
+    <color name="purple">#A259FF</color>
+    <color name="blue">#1ABCFD</color>
+    <color name="orange">#FF8E3E</color>
+
 </resources>
+
+
+
