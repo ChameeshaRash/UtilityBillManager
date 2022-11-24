@@ -1,189 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bottom_sheet_layout"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content"
-    android:paddingTop="64dp"
-    android:paddingHorizontal="48dp"
-    tools:context=".Login">
-
-
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/applogo3d1" />
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgLogo"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="16dp"
-        android:text="Welcome Back!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/grey_100"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="59dp" />
-    <TextView
-        android:id="@+id/txtSubTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="Let’s continue the journey."
-        android:textColor="@color/grey_60"
-        android:layout_below="@id/txtTitle"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="59dp"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-        />
-
-
-    <TextView
-        android:id="@+id/textView_Email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtSubTitle"
-        android:padding="5dp"
-        android:text="Email"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="80dp" />
-
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_Email"
-        android:background="@drawable/shape_border_and_background"
-        android:ems="10"
-        android:hint="johndoe@example.com "
-        android:inputType="textEmailAddress"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="18dp" />
-
-    <TextView
-        android:id="@+id/textView_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextTextEmailAddress"
-        android:padding="5dp"
-        android:text="Password"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_email"
-        android:background="@drawable/shape_border_and_background"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="18dp" />
-
-    <TextView
-        android:id="@+id/textView_forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextTextPassword"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:text="Forgot Password?"
-
-        />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_forgotPassword"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/outlined_button_background"
-        android:paddingVertical="16dp"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:cornerRadius="16dp" />
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <RelativeLayout
-        android:id="@+id/txtBreaker"
+
+        android:id="@+id/bottom_sheet_layout"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnLogin"
-        android:layout_marginTop="20dp"
-        >
-        <View
-            android:layout_centerVertical="true"
-            android:id="@+id/leftLine"
-            android:layout_toStartOf="@+id/or"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey_10" />
+        android:paddingTop="64dp"
+        android:paddingHorizontal="48dp"
+        tools:context=".Login">
+
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/applogo3d1" />
 
         <TextView
-            android:id="@+id/or"
+            android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingHorizontal="16dp"
-            android:text="or"
-            android:textSize="16sp" />
-        <View
-            android:layout_centerVertical="true"
-            android:id="@+id/rightLine"
-            android:layout_toEndOf="@id/or"
+            android:layout_below="@id/imgLogo"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="16dp"
+            android:text="Welcome Back!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/grey_100"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="59dp" />
+        <TextView
+            android:id="@+id/txtSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="Let’s continue the journey."
+            android:textColor="@color/grey_60"
+            android:layout_below="@id/txtTitle"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="59dp"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            />
+
+
+        <TextView
+            android:id="@+id/textView_Email"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey_10"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSubTitle"
+            android:padding="5dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="80dp" />
+
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_Email"
+            android:background="@drawable/shape_border_and_background"
+            android:ems="10"
+            android:hint="johndoe@example.com "
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="18dp" />
+
+        <TextView
+            android:id="@+id/textView_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextTextEmailAddress"
+            android:padding="5dp"
+            android:text="Password"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_email"
+            android:background="@drawable/shape_border_and_background"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="18dp" />
+
+        <TextView
+            android:id="@+id/textView_forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextTextPassword"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:text="Forgot Password?"
+            android:onClick="forgot_Password"
+
+            />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_forgotPassword"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/outlined_button_background"
+            android:paddingVertical="16dp"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/txtBreaker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnLogin"
+            android:layout_marginTop="20dp"
+            >
+            <View
+                android:layout_centerVertical="true"
+                android:id="@+id/leftLine"
+                android:layout_toStartOf="@+id/or"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_10" />
+
+            <TextView
+                android:id="@+id/or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingHorizontal="16dp"
+                android:text="or"
+                android:textSize="16sp" />
+            <View
+                android:layout_centerVertical="true"
+                android:id="@+id/rightLine"
+                android:layout_toEndOf="@id/or"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_10"/>
+
+        </RelativeLayout>
+
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btn_LoginByGmail"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/txtBreaker"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:layout_marginVertical="32dp"-->
+    <!--        android:background="@drawable/outlined_button_background"-->
+    <!--        android:drawableLeft="@drawable/ic_flat_color_icons_google"-->
+    <!--        android:paddingVertical="16dp"-->
+    <!--        android:text="Continue with Google"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        android:textSize="16sp" />-->
+
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/btn_LoginByGmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtBreaker"
+            android:layout_marginVertical="32dp"
+            android:background="@color/white"
+            android:paddingVertical="16dp"
+            android:text="Continue with Google"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_flat_color_icons_google"
+            app:iconGravity="textStart"
+            app:strokeColor="@color/grey_10"
+            app:strokeWidth="1dp" />
+
+
 
     </RelativeLayout>
 
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_LoginByGmail"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/txtBreaker"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_marginVertical="32dp"-->
-<!--        android:background="@drawable/outlined_button_background"-->
-<!--        android:drawableLeft="@drawable/ic_flat_color_icons_google"-->
-<!--        android:paddingVertical="16dp"-->
-<!--        android:text="Continue with Google"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:textSize="16sp" />-->
-
-    <com.google.android.material.button.MaterialButton
-
-        android:id="@+id/btn_LoginByGmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtBreaker"
-        android:layout_marginVertical="32dp"
-        android:paddingVertical="16dp"
-        app:icon="@drawable/ic_flat_color_icons_google"
-        app:iconGravity="textStart"
-        android:text="Continue with Google"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:background="@color/white"
-        app:cornerRadius="16dp"
-        app:strokeColor="@color/grey_10"
-        app:strokeWidth="1dp"
-        />
-
-
-
-</RelativeLayout>
+</ScrollView>

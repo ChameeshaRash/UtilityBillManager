@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         dotsIndicator.setViewPager(viewPager);
 
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     public void login(View view) {
         Intent i1 = new Intent(MainActivity.this, Login.class);
         startActivity(i1);
