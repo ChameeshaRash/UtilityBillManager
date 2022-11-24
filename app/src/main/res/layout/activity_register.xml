@@ -109,16 +109,17 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/textView_accept"
+                android:id="@+id/RadioBtnTextView_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I accept the " />
+                android:text="I accept the "
+                android:checked="false"/>
 
             <TextView
                 android:id="@+id/txtCondition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/textView_accept"
+                android:layout_toRightOf="@id/RadioBtnTextView_accept"
                 android:text="Terms and Conditions."
                 android:textColor="@color/yellow" />
         </LinearLayout>
@@ -136,7 +137,8 @@
             android:text="Register"
             android:textAllCaps="false"
             android:textSize="16sp"
-            app:cornerRadius="15dp" />
+            app:cornerRadius="15dp"
+            />
 
         <TextView
             android:id="@+id/txtBreaker"
