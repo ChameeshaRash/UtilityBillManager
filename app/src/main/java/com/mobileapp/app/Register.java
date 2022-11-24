@@ -1,5 +1,6 @@
 package com.mobileapp.app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,7 +13,11 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Register extends AppCompatActivity implements View.OnClickListener{
@@ -23,10 +28,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
      EditText editTextEmail,editTextPassword;
      Button btnLoginRegister;
      RadioButton radioBtnAccept;
-
-
-//    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
 
     FirebaseAuth mAuth;
     @Override
@@ -58,24 +59,38 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         //making intent from register to Main activity by app
         switch (v.getId()){
-            case R.id.imgLogoRegister:
+            case R.id.imgLogoRegister://define what happened if logo is clicked
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-            case R.id.btnLoginRegister:
-                registerUser();//validation part is include in this method below
+//            case R.id.btnLoginRegister:
+//                //validation part is include in this method below
+//                if( onClickButtonMethod()==false) {
+//                    btnLoginRegister.requestFocus();
+
+//                }else {
+//                    registerUser();
+//                    Intent intentMain_Login=new Intent(Register.this,Home.class);
+//                    startActivity(intentMain_Login);
+//                    break;
+//                }
+
+            case R.id.btnLoginRegister://define what happened if register button is clicked
+                registerUser();
                 break;
+
+
+                }
+
 
         }
 
 
-    }
+
+
 
     private void registerUser() {
             String emailRegister=editTextEmail.getText().toString().trim();
             String passwordRegister=editTextPassword.getText().toString().trim();
-            boolean selectedBooleanValue = radioBtnAccept.isSelected();
-
-
 
 
             if(emailRegister.isEmpty()){
@@ -100,10 +115,53 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 editTextPassword.requestFocus();
 
             }
-            if(!selectedBooleanValue){
-                Toast.makeText(Register.this,"Please Agree to Terms and Condition", Toast.LENGTH_SHORT).show();
 
+
+                 mAuth.createUserWithEmailAndPassword(emailRegister, passwordRegister)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    User user = new User(emailRegister);
+
+                                    FirebaseDatabase.getInstance().getReference("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(Register.this, "User has been registered Successfully", Toast.LENGTH_LONG).show();
+                                                    } else {
+                                                        Toast.makeText(Register.this, "Failed to Register.Try Again!", Toast.LENGTH_LONG).show();
+
+                                                    }
+
+                                                }
+                                            });
+                                } else {
+
+                                    Toast.makeText(Register.this, "Failed to Register.Try Again!", Toast.LENGTH_LONG).show();
+
+
+                                }
+                            }
+                        });
             }
 
+
+
+            //define the method to check radio button
+    private boolean onClickButtonMethod() {
+        boolean selectedBooleanValue = radioBtnAccept.isSelected();
+
+        if(selectedBooleanValue==false) {
+            Toast.makeText(Register.this, "Please Agree to Terms and Condition", Toast.LENGTH_SHORT).show();
+
+        }
+        return selectedBooleanValue;
+
+
+
     }
+
 }
