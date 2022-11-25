@@ -9,11 +9,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageButton
+        android:id="@+id/imgProfile"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:src="@drawable/imgprofile_avator"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_Home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_below="@id/imgProfile">
 
     </androidx.recyclerview.widget.RecyclerView>
 
