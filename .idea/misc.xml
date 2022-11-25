@@ -26,9 +26,11 @@
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/button_background.xml" value="0.135" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/outlined_button_background.xml" value="0.135" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/shape_border_and_background.xml" value="0.135" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_home.xml" value="0.2111111111111111" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/layout/bill_card.xml" value="0.2578125" />
       </map>
     </option>
   </component>
