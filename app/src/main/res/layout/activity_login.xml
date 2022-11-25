@@ -63,7 +63,7 @@
             tools:layout_editor_absoluteY="80dp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/editTextEmailAddressLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView_Email"
@@ -78,14 +78,14 @@
             android:id="@+id/textView_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/editTextTextEmailAddress"
+            android:layout_below="@id/editTextEmailAddressLogin"
             android:padding="5dp"
             android:text="Password"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/editTextPasswordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView_email"
@@ -100,7 +100,7 @@
             android:id="@+id/textView_forgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/editTextTextPassword"
+            android:layout_below="@id/editTextPasswordLogin"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
             android:text="Forgot Password?"
@@ -109,7 +109,7 @@
             />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnLogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView_forgotPassword"
@@ -126,7 +126,7 @@
             android:id="@+id/txtBreaker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btnLogin"
+            android:layout_below="@id/btnLogIn"
             android:layout_marginTop="20dp"
             >
             <View
