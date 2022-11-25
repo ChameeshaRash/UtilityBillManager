@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,10 +24,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText editText_emailLogin,editText_PasswordLogin;
     private Button btnLogIn;
 
-
+    private TextView forgotPassword;
 
 
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         editText_PasswordLogin=(EditText)findViewById(R.id.editTextPasswordLogin);
 
 
+        //catch the forgot password text to make intent from login to reset password
+        forgotPassword=(TextView) findViewById(R.id.textView_forgotPassword);
+        forgotPassword.setOnClickListener(this);
 
 
     }
@@ -55,18 +60,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onResume();
     }
 
-    //making intent to forgot password
-    public void forgot_Password(View view) {
-        Intent i3 = new Intent(Login.this, Forget_Password.class);
-        startActivity(i3);
-
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnLogIn:
                 userLogin();
+                break;
+            case R.id.textView_forgotPassword:
+                startActivity(new Intent(this,Forget_Password.class));
                 break;
         }
 
@@ -76,7 +77,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String email=editText_emailLogin.getText().toString().trim();
         String password=editText_PasswordLogin.getText().toString().trim();
 
-        //validation for email and password
+        //validations for email and password
         if(email.isEmpty()){
             editText_emailLogin.setError("Email is Required!");
             editText_emailLogin.requestFocus();
@@ -112,7 +113,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                     if(user.isEmailVerified()){
                         //redirect to user profile
-                        startActivity(new Intent(Login.this,Profile.class));
+                        startActivity(new Intent(Login.this,Home.class));
                     }else {
                         user.sendEmailVerification();
                         Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
