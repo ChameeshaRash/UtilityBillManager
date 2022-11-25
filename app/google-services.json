@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "176110507509",
+    "project_id": "utilia-utility-bill-manager",
+    "storage_bucket": "utilia-utility-bill-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176110507509:android:5be8e9b86fdbca3e1f7cbc",
+        "android_client_info": {
+          "package_name": "com.mobileapp.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176110507509-dpv08184croio9cuk830344v4347vfhj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm8PSXrOAOcouwBiwZ_9KKzMMoX5iES5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176110507509-dpv08184croio9cuk830344v4347vfhj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
