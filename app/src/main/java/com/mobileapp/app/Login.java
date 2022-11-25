@@ -27,9 +27,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private TextView forgotPassword;
 
 
-
-
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +77,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String email=editText_emailLogin.getText().toString().trim();
         String password=editText_PasswordLogin.getText().toString().trim();
 
-        //validation for email and password
+        //validations for email and password
         if(email.isEmpty()){
             editText_emailLogin.setError("Email is Required!");
             editText_emailLogin.requestFocus();
