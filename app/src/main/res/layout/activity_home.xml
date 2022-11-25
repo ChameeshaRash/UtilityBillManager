@@ -1,26 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:layout_marginHorizontal="32dp"
+    android:layout_marginTop="32dp">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_Home"
+    <RelativeLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:padding="16dp">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        //Image
 
-    
-    
+        <androidx.cardview.widget.CardView
+            android:id="@+id/userImgContainer"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="16dp"
+            app:cardBackgroundColor="@color/grey_20"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/userImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_image" />
+
+        </androidx.cardview.widget.CardView>
+
+        //title
+
+        <TextView
+            android:id="@+id/userNamePrefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/userImgContainer"
+            android:text="Hey, "
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/userNamePrefix"
+            android:maxLength="64"
+            android:text="Ravi"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/userNamesuffix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/userName"
+            android:text=" 👋"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        //subtitle
+
+        <TextView
+            android:id="@+id/topBarSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userNamePrefix"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@id/userImgContainer"
+            android:text="Let's track’em all."
+            android:textSize="12sp" />
+
+        <ImageButton
+            android:id="@+id/hamburgerMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="4dp"
+            android:padding="12dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_hamburger_menu" />
+
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:id="@+id/billScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_Home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </ScrollView>
+
     
 </RelativeLayout>
-
-    
-</ScrollView>
