@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "176110507509",
+    "firebase_url": "https://utilia-utility-bill-manager-default-rtdb.firebaseio.com",
     "project_id": "utilia-utility-bill-manager",
     "storage_bucket": "utilia-utility-bill-manager.appspot.com"
   },
