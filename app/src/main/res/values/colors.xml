@@ -29,6 +29,7 @@
     <color name="purple">#A259FF</color>
     <color name="blue">#1ABCFD</color>
     <color name="orange">#FF8E3E</color>
+    <color name="transparent">#00000000</color>
 
 </resources>
 
