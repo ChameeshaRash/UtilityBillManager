@@ -60,7 +60,7 @@ public class Verify_Email extends AppCompatActivity implements View.OnClickListe
         FirebaseUser firebaseUser = mAuth.getInstance().getCurrentUser();
         Boolean emailflag = firebaseUser.isEmailVerified();
         if(emailflag){
-            startActivity(new Intent(Verify_Email.this, Home.class));
+            startActivity(new Intent(Verify_Email.this, Home.class)); //intent to verify view to home
         }else{
             firebaseUser.sendEmailVerification();//send the email verification
             Toast.makeText(this, "Verify your email", Toast.LENGTH_SHORT).show();
