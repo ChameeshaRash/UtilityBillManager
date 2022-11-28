@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_marginTop="32dp">
+    android:layout_height="fill_parent">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="32dp">
 
 <!--    topBar-->
     <RelativeLayout
@@ -92,9 +95,7 @@
 
     </RelativeLayout>
 
-
-
-
+    <!--    Home items container-->
     <ScrollView
         android:id="@+id/homeScrollView"
         android:layout_below="@id/topBar"
@@ -102,7 +103,7 @@
         android:layout_height="wrap_content"
         android:scrollbars="none">
 
-<!--    Home items container-->
+
         <RelativeLayout
             android:id="@+id/homeContainer"
             android:layout_width="match_parent"
@@ -373,3 +374,39 @@
 
     
 </RelativeLayout>
+
+<!--    Bottom nav-->
+<com.google.android.material.bottomappbar.BottomAppBar
+    android:id="@+id/bottomAppBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    app:fabCradleVerticalOffset="0dp">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconSize="48dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/transparent"
+        app:elevation="0dp"
+        app:itemPaddingBottom="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        />
+
+</com.google.android.material.bottomappbar.BottomAppBar>
+
+
+<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    android:id="@+id/fabAddBill"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:iconTint="@color/white"
+    app:icon="@drawable/ic_fab_plus"
+    app:backgroundTint="@color/black"
+    app:layout_anchor="@id/bottomAppBar" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

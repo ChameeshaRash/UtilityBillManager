@@ -2,17 +2,13 @@ package com.mobileapp.app;
 
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.fonts.FontFamily;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,10 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -38,10 +35,11 @@ public class Home extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     List<BillCard> billCardList;
     Adapter_BillCard adapter_BillCard;
-
+    BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
 
     private ImageButton imgProfile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +47,42 @@ public class Home extends AppCompatActivity {
         //status bar color change
        // getWindow().setStatusBarColor(this.getResources().getColor(R.color.white));
         setContentView(R.layout.activity_home);
+
+
+        //bottom navigation
+
+        bottomNavigationView = findViewById(R.id.bottomNavigator);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+
+                    case R.id.home:
+                        return true;
+
+                    case R.id.analytics:
+                        startActivity(new Intent(getApplicationContext(),Analytics.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.savedBills:
+                        startActivity(new Intent(getApplicationContext(),SavedBills.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.userProfile:
+                        startActivity(new Intent(getApplicationContext(),UserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
 
 
         //homePieChart content
@@ -99,7 +133,7 @@ public class Home extends AppCompatActivity {
         homePieChart.animateY(1000, Easing.EaseInOutCirc);
 
 
-        PieDataSet dataSet = new PieDataSet(yValues," ");
+        PieDataSet dataSet = new PieDataSet(yValues,"");
         dataSet.setSliceSpace(4f);
         dataSet.setSelectionShift(0f);
         dataSet.setColors(pieColors);
@@ -112,11 +146,6 @@ public class Home extends AppCompatActivity {
         homePieChart.setData(data);
 
 
-
-
-
-
-
         //recyclerview content
         initData();
         initRecyclerView();
@@ -127,7 +156,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Home.this,Profile.class));
+                startActivity(new Intent(Home.this, UserProfile.class));
 
             }
         });

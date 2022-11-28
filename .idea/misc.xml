@@ -21,15 +21,24 @@
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/layout/layout.xml" value="0.2318840579710145" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.192" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/button_background.xml" value="0.135" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/corner_radius_32.xml" value="0.1725" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/ic_hamburger_menu.xml" value="0.1725" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/ic_saved_bils.xml" value="0.1725" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/outline_grey_10.xml" value="0.147" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/outlined_button_background.xml" value="0.135" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/selector.xml" value="0.1725" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/drawable/shape_border_and_background.xml" value="0.135" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_analytics.xml" value="0.1675929884566054" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_profile.xml" value="0.1675929884566054" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_saved_bills.xml" value="0.15604959384352288" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_screenshots.xml" value="0.1675929884566054" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/layout/activity_user_profile.xml" value="0.1675929884566054" />
         <entry key="..\:/UtilityBillManager/app/src/main/res/layout/bill_card.xml" value="0.2578125" />
+        <entry key="..\:/UtilityBillManager/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22" />
       </map>
     </option>
   </component>
