@@ -1,11 +1,24 @@
 package com.mobileapp.app;
 
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -20,6 +33,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -38,6 +52,8 @@ public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
 
+    ExtendedFloatingActionButton addBillFAB;
+
     private ImageButton imgProfile;
 
 
@@ -47,6 +63,18 @@ public class Home extends AppCompatActivity {
         //status bar color change
        // getWindow().setStatusBarColor(this.getResources().getColor(R.color.white));
         setContentView(R.layout.activity_home);
+
+
+        //Add bill FAB
+        addBillFAB = findViewById(R.id.fabAddBill);
+        addBillFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showDialog();
+
+            }
+        });
 
 
         //bottom navigation
@@ -163,6 +191,62 @@ public class Home extends AppCompatActivity {
 
 
     }
+
+
+    //add Bill bottom sheet
+    private void showDialog() {
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.add_bill_layout);
+
+        final RadioGroup utilityType = dialog.findViewById(R.id.utilitySelection);
+
+
+        final EditText amount = dialog.findViewById(R.id.billAmount);
+        final EditText date = dialog.findViewById(R.id.dateInput);
+        Button addBill = dialog.findViewById(R.id.btnAddBill);
+
+
+        DAOUtilityBill daoUtilityBill = new DAOUtilityBill();
+
+        addBill.setOnClickListener(v->{
+
+            final RadioButton utility = dialog.findViewById(utilityType.getCheckedRadioButtonId());
+
+            UtilityBill utilityBill = new UtilityBill(
+                    utility.getText().toString(),
+                    Float.parseFloat(amount.getText().toString()),
+                    date.getText().toString());
+
+
+            daoUtilityBill.add(utilityBill).addOnSuccessListener(suc->{
+
+                Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
+
+            }).addOnFailureListener(er->{
+
+                Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
+
+            });
+
+        });
+
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+
+
+
+
+
+    }
+
+
 
 
 
