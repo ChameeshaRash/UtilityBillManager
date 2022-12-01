@@ -224,7 +224,8 @@
             android:background="@drawable/shape_border_and_background"
             android:drawableEnd="@drawable/ic_date"
             android:hint="DD/MM/YYYY"
-            android:inputType="date"
+            android:focusable="false"
+            android:inputType="none"
             android:paddingHorizontal="24dp"
             android:paddingVertical="18dp" />
 
