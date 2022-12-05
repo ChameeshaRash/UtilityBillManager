@@ -3,7 +3,6 @@ package com.mobileapp.app;
 public class User {
     public String email;
 
-
     public User(){
 
     }

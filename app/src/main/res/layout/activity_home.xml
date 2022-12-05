@@ -49,21 +49,21 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/userNamePrefix"
-            android:maxLength="64"
-            android:text="Ravi"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/userName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_toEndOf="@id/userNamePrefix"-->
+<!--            android:maxLength="64"-->
+<!--            android:text="Ravi"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
 
         <TextView
             android:id="@+id/userNamesuffix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/userName"
+            android:layout_toEndOf="@id/userNamePrefix"
             android:text=" 👋"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -170,10 +170,10 @@
                             android:layout_marginTop="16dp"/>
 
                         <TextView
-                            android:id="@+id/electricityCardAmount"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/electricityCardAmountHome"
+                            android:layout_width="300px"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 3,200"
+                            android:text="Rs.0.00"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -213,10 +213,10 @@
                             android:layout_marginTop="16dp"/>
 
                         <TextView
-                            android:id="@+id/waterCardAmount"
+                            android:id="@+id/waterCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 3,200"
+                            android:text="Rs.0.00"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -265,10 +265,10 @@
                             android:layout_marginTop="16dp"/>
 
                         <TextView
-                            android:id="@+id/internetCardAmount"
+                            android:id="@+id/internetCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 3,200"
+                            android:text="Rs.0.00"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -308,10 +308,10 @@
                             android:layout_marginTop="16dp"/>
 
                         <TextView
-                            android:id="@+id/fuelCardAmount"
+                            android:id="@+id/fuelCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 3,200"
+                            android:text="Rs.0.00"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"

@@ -1,22 +1,20 @@
 package com.mobileapp.app;
 
-public class UtilityBill {
+public class ElectricityBill {
 
+    private String userEmail;
     private String utilityType;
 
     private float amount;
 
     private String date;
 
-    public  UtilityBill(){}
-
-    public UtilityBill(String utilityType, float amount, String date) {
+    public ElectricityBill(String userEmail,String utilityType, float amount, String date) {
         this.utilityType = utilityType;
         this.amount = amount;
         this.date = date;
+        this.userEmail=userEmail;
     }
-
-
 
     public String getUtilityType() {
         return utilityType;
@@ -42,5 +40,11 @@ public class UtilityBill {
         this.date = date;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
 
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 }
