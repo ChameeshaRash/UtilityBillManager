@@ -2,10 +2,10 @@ package com.mobileapp.app;
 
 public class BillCard {
 
-    private int billTypeIcon;
-    private String billTitle;
-    private String billAmount;
-    private String billDate;
+    public int billTypeIcon;
+    public String billTitle;
+    public String billAmount;
+    public String billDate;
 
 
     //Setters
@@ -36,5 +36,19 @@ public class BillCard {
         return billDate;
     }
 
+    public void setBillTypeIcon(int billTypeIcon) {
+        this.billTypeIcon = billTypeIcon;
+    }
 
+    public void setBillTitle(String billTitle) {
+        this.billTitle = billTitle;
+    }
+
+    public void setBillAmount(String billAmount) {
+        this.billAmount = billAmount;
+    }
+
+    public void setBillDate(String billDate) {
+        this.billDate = billDate;
+    }
 }

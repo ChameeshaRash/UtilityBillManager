@@ -2,7 +2,6 @@ package com.mobileapp.app;
 
 public class ElectricityBill {
 
-    private String userEmail;
     private String utilityType;
 
     private float amount;
@@ -13,7 +12,7 @@ public class ElectricityBill {
         this.utilityType = utilityType;
         this.amount = amount;
         this.date = date;
-        this.userEmail=userEmail;
+       ;
     }
 
     public String getUtilityType() {
@@ -40,11 +39,5 @@ public class ElectricityBill {
         this.date = date;
     }
 
-    public String getUserEmail() {
-        return userEmail;
-    }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
 }

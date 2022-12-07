@@ -1,15 +1,11 @@
 package com.mobileapp.app;
 
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +14,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -46,13 +41,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,17 +64,20 @@ public class Home extends AppCompatActivity {
 
 
 
+    DatabaseReference mDatabaseRef;
+    private List<UtilityBill> mUtilityBillList;
+    private ValueEventListener mDBListner;
+
+
+
+
     //to get total amount
     TextView electricityCardAmountHome,waterCardAmountHome,internetCardAmountHome,fuelCardAmountHome;
 
 
-    //to get electricity bill details from add page
-    RadioButton billTypeElectricity,billTypeInternet,billTypeWater,billTypeFuel;
-    EditText billAmount;
-    EditText dateInput;
-
     float totalElectricity,totalInternet,totalFuel,totalWater;
     TextView userEmail;
+
 
 
 
@@ -95,59 +87,35 @@ public class Home extends AppCompatActivity {
         //status bar color change
        // getWindow().setStatusBarColor(this.getResources().getColor(R.color.white));
         setContentView(R.layout.activity_home);
+        initData();
+        initRecyclerView();
 
-
-        //find attributes to data retrieve
-        billTypeElectricity=findViewById(R.id.billTypeElectricity);
-        billTypeInternet=findViewById(R.id.billTypeInternet);
-        billTypeWater=findViewById(R.id.billTypeWater);
-        billTypeFuel=findViewById(R.id.billTypeFuel);
-
-        electricityCardAmountHome=findViewById(R.id.electricityCardAmountHome);
-        waterCardAmountHome=findViewById(R.id.waterCardAmountHome);
-        internetCardAmountHome=findViewById(R.id.internetCardAmountHome);
-        fuelCardAmountHome=findViewById(R.id.fuelCardAmountHome);
-
-        userEmail=findViewById(R.id.textView_email);
-
+        mUtilityBillList=new ArrayList<UtilityBill>();
 
         //making reference to database
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference();
-
-        //reading data from database
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //execute code when receiving data
-                snapshot.getValue();
-                internetCardAmountHome.setText("Rs.2800");
-                electricityCardAmountHome.setText("Rs."+totalElectricity);
-                //                    String amountFromDB=snapshot.child(billType).child("amount").getValue(String.class);
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("UtilityBill");
 
 
-
-
-
-//                    String amountFromDB=snapshot.child(billType).child("amount").getValue(String.class);
-//                    String dateFromDB=snapshot.child(billType).child("date").getValue(String.class);
+//        mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    mUtilityBillList.clear();
+//                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+//                        UtilityBill type=dataSnapshot.getValue(UtilityBill.class);
+//                        mUtilityBillList.add(type);
 //
+//                    }
+//                }
+//            }
 //
-//                    Intent intent=new Intent(getApplicationContext(),Home.class);
-//                    intent.putExtra("amount",amountFromDB);
-//                    intent.putExtra("date",dateFromDB);
-//                    startActivity(intent);
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
 //
+//            }
 //
+//        });
 //
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
 
@@ -261,7 +229,7 @@ public class Home extends AppCompatActivity {
 
 
         //recyclerview content
-        initData();
+        //initData();
         initRecyclerView();
         //catch the profile logo to make intent to profile page
         imgProfile=(ImageButton) findViewById(R.id.imgProfile);
@@ -297,7 +265,7 @@ public class Home extends AppCompatActivity {
 
 
         DAOUtilityBill daoUtilityBill = new DAOUtilityBill();
-        DAOElectricityBill daoElectricityBill=new DAOElectricityBill();
+
 
         addBill.setOnClickListener(v->{
 
@@ -307,38 +275,6 @@ public class Home extends AppCompatActivity {
                     utility.getText().toString(),
                     Float.parseFloat(amount.getText().toString()),
                     date.getText().toString());
-
-
-            //calculate each catogaries' total amount
-            if(utility.getText().toString()=="Internet"){
-                totalInternet=+Float.parseFloat(amount.getText().toString());
-                String dateInternet =date.getText().toString();
-
-            }else if(utility.getText().toString()=="Water"){
-                totalWater=+Float.parseFloat(amount.getText().toString());
-                String dateWater =date.getText().toString();
-
-            }else if(utility.getText().toString()=="Fuel"){
-                totalFuel=+Float.parseFloat(amount.getText().toString());
-                String dateFuel =date.getText().toString();
-
-            }else if(utility.getText().toString()=="Electricity"){
-                //DatabaseReference referenceElec= FirebaseDatabase.getInstance().getReference();
-                totalElectricity=+Float.parseFloat(amount.getText().toString());
-                String dateElectricity =date.getText().toString();
-
-                ElectricityBill electricityBill=new ElectricityBill(userEmail.getText().toString(),"Electricity",
-                        Float.parseFloat(amount.getText().toString()),
-                        dateElectricity);
-                //referenceElec.child("ElectricityBills").child(userEmail.getText().toString()).setValue(electricityBill);
-                daoElectricityBill.add(electricityBill);
-
-            }
-
-
-
-
-
 
             daoUtilityBill.add(utilityBill).addOnSuccessListener(suc->{
 
@@ -358,7 +294,6 @@ public class Home extends AppCompatActivity {
 
 
 
-
         });
 
 
@@ -368,17 +303,7 @@ public class Home extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
-
-
-
-
     }
-
-
-
-
-
-
 
 
     //add data to the recyclerview home
@@ -415,74 +340,25 @@ public class Home extends AppCompatActivity {
 
     }
 
-//
-//    //to get sum of  Internet bill
-//    private int TotalInternet(){
-//        String billType=billTypeInternet.getText().toString().trim();
-//        String bill_amount=billAmount.getText().toString().trim();
-//        String billDate=dateInput.getText().toString().trim();
-//
-//        int Total_InternetAmount=10;
-//
-//
-//
-//
-//        Query checkBill=reference.orderByChild("amount").equalTo(billType);
-//        checkBill.addListenerForSingleValueEvent(new ValueEventListener() {
+
+    private void displayBills(View v){
+
+
+//        mDatabaseRef = FirebaseDatabase.getInstance().getReference("UtilityBill");
+//        mDatabaseRef.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
 //
-//                    String amountFromDB=snapshot.child(billType).child("amount").getValue(String.class);
-//                    String dateFromDB=snapshot.child(billType).child("date").getValue(String.class);
-//
-//
-//                    Intent intent=new Intent(getApplicationContext(),Home.class);
-//                    intent.putExtra("amount",amountFromDB);
-//                    intent.putExtra("date",dateFromDB);
-//                    startActivity(intent);
-//
-//
-//                }
 //            }
-//
 //
 //            @Override
 //            public void onCancelled(@NonNull DatabaseError error) {
 //
 //            }
 //        });
-//        return Total_InternetAmount;
-//
-//    }
-//
-//    private void showInternetTotal(){
-//        Intent intent=getIntent();
-//        int amountShowInternet=TotalInternet();
-//        electricityCardAmount.setText("Rs."+amountShowInternet);
-//    }
 
-//    public void getDocument() {
-//        // [START get_document]
-//        DocumentReference docRef = db.collection("UtilityBill").document("reference ");
-//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                    } else {
-//                        Log.d(TAG, "No such document");
-//                    }
-//                } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-//                }
-//            }
-//        });
-//        // [END get_document]
-//    }
 
+    }
 
 
 

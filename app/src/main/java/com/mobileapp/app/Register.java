@@ -1,22 +1,39 @@
 package com.mobileapp.app;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.identity.SignInCredential;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import com.google.firebase.auth.GoogleAuthProvider;
+
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -27,7 +44,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
      ImageView imgLogoRegister;
      EditText editTextEmail,editTextPassword;
      Button btnLoginRegister;
-     RadioButton radioBtnAccept;
+     ImageButton btnSignUpwithGoogle;
+     private GoogleSignInClient client;
+
+    private DatabaseReference databaseReference;
+
 
     FirebaseAuth mAuth;
     @Override
@@ -48,11 +69,91 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         //catch the user inputs
         editTextEmail=(EditText) findViewById(R.id.editTextEmailAddressRegister);
         editTextPassword=(EditText) findViewById(R.id.editTextPasswordRegister);
-        radioBtnAccept=(RadioButton)findViewById(R.id.RadioBtnTextView_accept);
+
+
+        //catch the sign up with google button
+        btnSignUpwithGoogle=(ImageButton) findViewById(R.id.btn_LoginByGmail);
+        GoogleSignInOptions options=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        client= GoogleSignIn.getClient(this,options);
+        btnSignUpwithGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentToSignUpwithGoogle=client.getSignInIntent();
+
+                startActivityForResult(intentToSignUpwithGoogle,1234);
+            }
+        });
+
+
 
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1234){
+            Task<GoogleSignInAccount> task=GoogleSignIn.getSignedInAccountFromIntent(data);
+
+            try {
+                GoogleSignInAccount account=task.getResult(ApiException.class);
+                AuthCredential credintial= GoogleAuthProvider.getCredential(account.getIdToken(),null);
+                FirebaseAuth.getInstance().signInWithCredential(credintial)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                  if(task.isSuccessful()){
+                                    User user = new User(account.getEmail());
+
+                                      //to store email in database
+                                      FirebaseDatabase.getInstance().getReference("Users")
+                                              .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                              .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                  @Override
+                                                  public void onComplete(@NonNull Task<Void> task) {
+                                                      if (task.isSuccessful()) {
+                                                          Intent intenttoSignIn=new Intent(getApplicationContext(),Home.class);
+                                                          startActivity(intenttoSignIn);
+                                                          Toast.makeText(Register.this, "User has been registered Successfully", Toast.LENGTH_LONG).show();
+                                                      } else {
+                                                          Toast.makeText(Register.this, "Failed to Register.Try Again!", Toast.LENGTH_LONG).show();
+
+                                                      }
+
+                                                  }
+                                              });
+//-------------------------------------------------------------------------------------------
+//                                     Intent intenttoSignIn=new Intent(getApplicationContext(),Home.class);
+//                                     startActivity(intenttoSignIn);
+                                }else{
+                                    Toast.makeText(Register.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
+
+
+
+
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+    }
 
 
     @Override
@@ -62,17 +163,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             case R.id.imgLogoRegister://define what happened if logo is clicked
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-//            case R.id.btnLoginRegister:
-//                //validation part is include in this method below
-//                if( onClickButtonMethod()==false) {
-//                    btnLoginRegister.requestFocus();
-
-//                }else {
-//                    registerUser();
-//                    Intent intentMain_Login=new Intent(Register.this,Home.class);
-//                    startActivity(intentMain_Login);
-//                    break;
-//                }
 
             case R.id.btnLoginRegister://define what happened if register button is clicked
                 registerUser();
@@ -119,10 +209,14 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
                  mAuth.createUserWithEmailAndPassword(emailRegister, passwordRegister)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+
                                 if (task.isSuccessful()) {
                                     User user = new User(emailRegister);
+
+
 
                                     FirebaseDatabase.getInstance().getReference("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -139,6 +233,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
                                                 }
                                             });
+
                                 } else {
 
                                     Toast.makeText(Register.this, "Failed to Register.Try Again!", Toast.LENGTH_LONG).show();
@@ -150,19 +245,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             }
 
 
+            public void checkMail(View v){
 
-            //define the method to check radio button
-    private boolean onClickButtonMethod() {
-        boolean selectedBooleanValue = radioBtnAccept.isSelected();
 
-        if(selectedBooleanValue==false) {
-            Toast.makeText(Register.this, "Please Agree to Terms and Condition", Toast.LENGTH_SHORT).show();
-
-        }
-        return selectedBooleanValue;
+            }
 
 
 
-    }
 
 }

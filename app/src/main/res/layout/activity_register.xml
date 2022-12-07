@@ -99,32 +99,6 @@
             android:inputType="textPassword"
             android:padding="10dp" />
 
-        //creating a linear layout
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextPasswordRegister"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/RadioBtnTextView_accept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I accept the "
-                android:onClick="onClickButtonMethod"
-                android:checked="false"
-                />
-
-            <TextView
-                android:id="@+id/txtCondition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/RadioBtnTextView_accept"
-                android:text="Terms and Conditions."
-                android:textColor="@color/yellow" />
-        </LinearLayout>
 
     //creating Login button
 
@@ -132,7 +106,7 @@
             android:id="@+id/btnLoginRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout1"
+            android:layout_below="@id/editTextPasswordRegister"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:padding="8dp"
@@ -167,27 +141,6 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:backgroundTint="@color/white" />
-
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressBarInRegister"-->
-<!--            style="?android:attr/progressBarStyleLarge"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="122dp"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:visibility="gone"-->
-<!--            tools:ignore="MissingConstraints"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            -->
-<!--            />-->
-
-
-
-
-
-
 
     </RelativeLayout>
 

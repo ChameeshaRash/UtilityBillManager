@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 
@@ -48,43 +50,24 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
+//if user not logout this make intent to home
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            Intent intent=new Intent(this,Home.class);
+            startActivity(intent);
+        }
+    }
+
 
     @Override
     public void onResume() {
         super.onResume();
     }
 
-//    public void login(View view) {
-//        Intent i1 = new Intent(MainActivity.this, Login.class);
-//        startActivity(i1);
-//
-//
-//    }
 
-//
-//    public void register(View view) {
-//        Intent i2 = new Intent(MainActivity.this, Register.class);
-//        startActivity(i2);
-//
-//    }
-
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.btnregister:
-//                //intent from main activity to register page
-//                Intent intentMain_Register = new Intent(MainActivity.this, Register.class);
-//                startActivity(intentMain_Register);
-//                break;
-//            case R.id.btnLogin:
-//                //intent from main activity to login page
-//                Intent intentMain_Login=new Intent(MainActivity.this,Login.class);
-//                startActivity(intentMain_Login);
-//                break;
-//
-//        }
-//    }
 
     public void register(View view) {
         //intent from main activity to register page

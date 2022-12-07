@@ -2,11 +2,11 @@ package com.mobileapp.app;
 
 public class UtilityBill {
 
-    private String utilityType;
+    public String utilityType;
 
-    private float amount;
+    public float amount;
 
-    private String date;
+    public String date;
 
     public  UtilityBill(){}
 
