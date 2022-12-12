@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -295,16 +296,16 @@ public class Home extends AppCompatActivity {
     private void initData() {
 
         billCardList = new ArrayList<>();
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_water, "Water - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Electricity - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Fuel - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Internet - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Water - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Electricity - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Fuel - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Internet - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Electricity - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Fuel - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Internet - August","Rs. 3,200","31.08.2022"));
 
 
 
@@ -319,6 +320,7 @@ public class Home extends AppCompatActivity {
         recyclerView_Home.setLayoutManager(linearLayoutManager);
         adapter_BillCard = new Adapter_BillCard(billCardList);
         recyclerView_Home.setAdapter(adapter_BillCard);
+        recyclerView_Home.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         adapter_BillCard.notifyDataSetChanged();
 
 
