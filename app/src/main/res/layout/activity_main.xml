@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/yellow">
+    android:background="@color/yellow_60">
 
 
     <androidx.viewpager.widget.ViewPager
@@ -17,22 +17,22 @@
     </androidx.viewpager.widget.ViewPager>
 
     //for Indicator
+
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:dotsColor="@color/black"
-        app:dotsCornerRadius="8dp"
-        app:dotsSize="8dp"
-        app:dotsSpacing="8dp"
-        app:dotsWidthFactor="2.5"
-        app:selectedDotColor="@color/black"
-        app:progressMode="true"
-        android:layout_centerInParent="true"
         android:layout_below="@id/sceensot_slider"
+        android:layout_centerInParent="true"
         android:padding="30dp"
-        />
+        app:dotsColor="@color/yellow_80"
+        app:dotsCornerRadius="16dp"
+        app:dotsSize="8dp"
+        app:dotsSpacing="4dp"
+        app:dotsWidthFactor="4"
+        app:progressMode="true"
+        app:selectedDotColor="@color/black" />
 
 //Login Button
 
@@ -41,19 +41,22 @@
         android:id="@+id/btnlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="265dp"
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="65dp"
+        android:fontFamily="@font/inter_semibold"
+        android:onClick="login"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        app:backgroundTint="#e3d134"
-        app:cornerRadius="15dp"
+        android:textSize="16sp"
+        app:backgroundTint="@color/yellow_60"
+        app:cornerRadius="16dp"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp"
-        android:onClick="login"/>
+        app:strokeWidth="1dp" />
 
     //Register Button
 
@@ -63,13 +66,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="45dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="65dp"
+        android:fontFamily="@font/inter_semibold"
+        android:onClick="register"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
         android:text="Register"
         android:textAllCaps="false"
-        android:textSize="15sp"
-        app:cornerRadius="15dp"
-        android:onClick="register"/>
+        android:textSize="16sp"
+        app:cornerRadius="16dp" />
 
 <!--    <ProgressBar-->
 <!--        android:id="@+id/progressBar"-->

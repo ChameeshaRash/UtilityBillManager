@@ -14,17 +14,17 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:padding="50dp"
+        android:paddingTop="48dp"
+        android:paddingHorizontal="48dp"
         tools:context=".Register">
-
 
 
         <ImageView
             android:id="@+id/imgLogoRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/applogo3d1"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/applogo3d1" />
 
         <TextView
             android:id="@+id/txtTitle"
@@ -34,23 +34,24 @@
             android:layout_centerHorizontal="true"
             android:padding="5dp"
             android:text="Welcome to Utilia!!"
+            android:fontFamily="@font/inter_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/black"
             tools:layout_editor_absoluteX="28dp"
             tools:layout_editor_absoluteY="59dp" />
+
         <TextView
             android:id="@+id/txtSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/txtTitle"
+            android:layout_centerHorizontal="true"
             android:padding="5dp"
             android:text="Let’s create your account"
-            android:textColor="@color/grey"
-            android:layout_below="@id/txtTitle"
-            tools:layout_editor_absoluteX="28dp"
-            tools:layout_editor_absoluteY="59dp"
-            android:layout_centerHorizontal="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-            />
+            android:textColor="@color/grey"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="59dp" />
 
 
 
@@ -58,6 +59,7 @@
             android:id="@+id/textView_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:padding="5dp"
             android:text="Email"
             android:textColor="@color/black"
@@ -74,9 +76,10 @@
             android:layout_below="@id/textView_Email"
             android:background="@drawable/shape_border_and_background"
             android:ems="10"
-            android:hint="johndoe@example.com "
+            android:hint="yourmail@email.com"
             android:inputType="textEmailAddress"
-            android:padding="10dp" />
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="18dp" />
 
         <TextView
             android:id="@+id/textView_email"
@@ -85,6 +88,7 @@
             android:layout_below="@id/editTextEmailAddressRegister"
             android:padding="5dp"
             android:text="Password"
+            android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -97,7 +101,8 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="18dp" />
 
 
     //creating Login button
@@ -108,24 +113,48 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextPasswordRegister"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:padding="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/inter_semibold"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="18dp"
             android:text="Register"
             android:textAllCaps="false"
             android:textSize="16sp"
-            app:cornerRadius="15dp"
-            />
+            app:cornerRadius="15dp" />
 
-        <TextView
+        <RelativeLayout
             android:id="@+id/txtBreaker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnLoginRegister"
-            android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
-            android:padding="2dp"
-            android:text="------------------------------ or ---------------------------"
-            android:textSize="16sp" />
+            >
+
+            <View
+                android:id="@+id/leftLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/or"
+                android:background="@color/grey_10" />
+
+            <TextView
+                android:id="@+id/or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingHorizontal="16dp"
+                android:text="or"
+                android:textSize="16sp" />
+            <View
+                android:layout_centerVertical="true"
+                android:id="@+id/rightLine"
+                android:layout_toEndOf="@id/or"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_10"/>
+
+        </RelativeLayout>
 
 
         <ImageButton
@@ -135,7 +164,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtBreaker"
             android:layout_centerInParent="true"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="16dp"
+
             android:contentDescription="Google Linking"
             android:src="@drawable/btn_google"
             android:textAllCaps="false"

@@ -8,7 +8,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="32dp">
+    android:layout_marginTop="16dp">
 
 <!--    topBar-->
     <RelativeLayout
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="32dp">
+        android:layout_marginBottom="16dp">
 
         <!--Image-->
         <androidx.cardview.widget.CardView
@@ -45,7 +45,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/userImgContainer"
-            android:text="Hey, "
+            android:fontFamily="@font/inter_semibold"
+            android:text="Hello"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -76,10 +78,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/userNamePrefix"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:layout_toEndOf="@id/userImgContainer"
             android:text="Let's track’em all."
-            android:textSize="12sp" />
+            android:textColor="@color/grey_80"
+            android:textSize="14sp" />
 
         <ImageButton
             android:id="@+id/hamburgerMenu"
@@ -117,6 +120,7 @@
                 android:id="@+id/homePieChart"
                 android:layout_width="match_parent"
                 android:layout_height="260sp"
+
                 android:layout_alignParentTop="true"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/outline_grey_10" />
@@ -173,6 +177,7 @@
                             android:id="@+id/electricityCardAmountHome"
                             android:layout_width="300px"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_semibold"
                             android:text="Rs.0.00"
                             android:textAlignment="center"
                             android:maxLength="12"
@@ -217,6 +222,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rs.0.00"
+                            android:fontFamily="@font/inter_semibold"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -268,6 +274,7 @@
                             android:id="@+id/internetCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_semibold"
                             android:text="Rs.0.00"
                             android:textAlignment="center"
                             android:maxLength="12"
@@ -312,6 +319,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rs.0.00"
+                            android:fontFamily="@font/inter_semibold"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -340,6 +348,7 @@
                     android:id="@+id/txtRecentBills"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
                     android:text="Recently Bills"
                     android:textColor="@color/grey_100"
                     android:textSize="18sp"
@@ -351,7 +360,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:clickable="true"
-                    android:text="View all >"
+                    android:text="View all"
+                    android:paddingVertical="4dp"
                     android:textColor="@color/grey_60"
                     android:textSize="14sp" />
 
