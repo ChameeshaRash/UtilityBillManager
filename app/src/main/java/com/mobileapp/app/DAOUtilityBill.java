@@ -26,11 +26,7 @@ public class DAOUtilityBill {
 
         databaseReference = db.getReference(UtilityBill.class.getSimpleName());
 
-
-
-
     }
-
 
     public Task<Void> add(UtilityBill utilityBill){
         return databaseReference.child(""+uid).push().setValue(utilityBill);

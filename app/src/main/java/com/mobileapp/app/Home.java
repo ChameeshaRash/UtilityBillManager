@@ -201,8 +201,6 @@ public class Home extends AppCompatActivity {
         dialog.setContentView(R.layout.add_bill_layout);
 
         final RadioGroup utilityType = dialog.findViewById(R.id.utilitySelection);
-
-
         final EditText amount = dialog.findViewById(R.id.billAmount);
         final EditText date = dialog.findViewById(R.id.dateInput);
 
