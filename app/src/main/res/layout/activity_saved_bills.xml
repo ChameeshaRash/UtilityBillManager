@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    tools:context=".SavedBills">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -109,7 +110,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="32dp"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+
+                >
 
 
 
@@ -117,7 +120,8 @@
                 <RelativeLayout
                     android:id="@+id/recentBillsContainer"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <TextView
                         android:id="@+id/txtRecentBills"
@@ -130,7 +134,7 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView_Home"
+                        android:id="@+id/recyclerView_SavedBills"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txtRecentBills"

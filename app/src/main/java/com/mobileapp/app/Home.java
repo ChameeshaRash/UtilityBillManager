@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -31,14 +30,10 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -49,12 +44,6 @@ import java.util.List;
 
 public class Home extends AppCompatActivity {
 
-
-
-    RecyclerView recyclerView_Home;
-    LinearLayoutManager linearLayoutManager;
-    List<BillCard> billCardList;
-    Adapter_BillCard adapter_BillCard;
     BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
 
@@ -65,20 +54,6 @@ public class Home extends AppCompatActivity {
 
 
     DatabaseReference mDatabaseRef;
-    private List<UtilityBill> mUtilityBillList;
-    private ValueEventListener mDBListner;
-
-
-
-
-    //to get total amount
-    TextView electricityCardAmountHome,waterCardAmountHome,internetCardAmountHome,fuelCardAmountHome;
-
-
-    float totalElectricity,totalInternet,totalFuel,totalWater;
-    TextView userEmail;
-
-
 
 
     @Override
@@ -87,36 +62,10 @@ public class Home extends AppCompatActivity {
         //status bar color change
        // getWindow().setStatusBarColor(this.getResources().getColor(R.color.white));
         setContentView(R.layout.activity_home);
-        initData();
-        initRecyclerView();
 
-        mUtilityBillList=new ArrayList<UtilityBill>();
 
         //making reference to database
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("UtilityBill");
-
-
-//        mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    mUtilityBillList.clear();
-//                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-//                        UtilityBill type=dataSnapshot.getValue(UtilityBill.class);
-//                        mUtilityBillList.add(type);
-//
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//
-//        });
-//
-
 
 
         //Add bill FAB
@@ -227,10 +176,6 @@ public class Home extends AppCompatActivity {
 
         homePieChart.setData(data);
 
-
-        //recyclerview content
-        //initData();
-        initRecyclerView();
         //catch the profile logo to make intent to profile page
         imgProfile=(ImageButton) findViewById(R.id.imgProfile);
 
@@ -289,11 +234,6 @@ public class Home extends AppCompatActivity {
             });
 
 
-
-
-
-
-
         });
 
 
@@ -304,62 +244,6 @@ public class Home extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
     }
-
-
-    //add data to the recyclerview home
-
-    private void initData() {
-
-        billCardList = new ArrayList<>();
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_water, "Water - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
-
-
-
-
-    }
-
-    private void initRecyclerView() {
-
-        recyclerView_Home=findViewById(R.id.recyclerView_Home);
-        linearLayoutManager= new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView_Home.setLayoutManager(linearLayoutManager);
-        adapter_BillCard = new Adapter_BillCard(billCardList);
-        recyclerView_Home.setAdapter(adapter_BillCard);
-        adapter_BillCard.notifyDataSetChanged();
-
-
-    }
-
-
-    private void displayBills(View v){
-
-
-//        mDatabaseRef = FirebaseDatabase.getInstance().getReference("UtilityBill");
-//        mDatabaseRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-
-    }
-
 
 
 

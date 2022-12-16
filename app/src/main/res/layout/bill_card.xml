@@ -29,7 +29,7 @@
             android:layout_toEndOf="@id/billTypeIcon">
 
             <TextView
-                android:id="@+id/billTitle"
+                android:id="@+id/billTitleHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -40,7 +40,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/billAmount"
+                android:id="@+id/billAmountHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -50,10 +50,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/billDate"
+                android:id="@+id/billDateHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/billTitle"
+                android:layout_below="@id/billTitleHistory"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="4dp"
                 android:maxLength="10"
