@@ -149,6 +149,7 @@
             android:layout_marginEnd="16dp"
             android:background="@color/transparent"
             app:elevation="0dp"
+            app:itemRippleColor="@color/white"
             app:itemPaddingBottom="24dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
