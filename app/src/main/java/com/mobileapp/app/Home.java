@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -34,6 +35,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -46,21 +48,19 @@ public class Home extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
-
     ExtendedFloatingActionButton addBillFAB;
-
     private ImageButton imgProfile;
-
-
-
     DatabaseReference mDatabaseRef;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String uid = user.getUid();
+    RecyclerView recyclerViewHome;
+    SavedBillsAdapter savedbillAdapterHome;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //status bar color change
-       // getWindow().setStatusBarColor(this.getResources().getColor(R.color.white));
         setContentView(R.layout.activity_home);
 
 
@@ -78,6 +78,22 @@ public class Home extends AppCompatActivity {
 
             }
         });
+
+
+
+
+        //retrive data
+
+        recyclerViewHome=(RecyclerView)findViewById(R.id.recyclerView_Home);
+        recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
+
+        FirebaseRecyclerOptions<SavedBillsModel> options=
+                new FirebaseRecyclerOptions.Builder<SavedBillsModel>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("UtilityBill").child(""+uid),SavedBillsModel.class)
+                        .build();
+
+        savedbillAdapterHome=new SavedBillsAdapter(options);
+        recyclerViewHome.setAdapter(savedbillAdapterHome);
 
 
         //bottom navigation
@@ -241,6 +257,19 @@ public class Home extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        savedbillAdapterHome.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        savedbillAdapterHome.stopListening();
     }
 
 
