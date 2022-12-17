@@ -22,9 +22,7 @@ import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.collection.ArraySet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,8 +34,6 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -47,9 +43,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
@@ -80,6 +73,7 @@ public class Home extends AppCompatActivity {
     int totalWater;
     int totalFuel;
     int totalInternet;
+    String totalString="Fetching...";
 
 
 
@@ -103,6 +97,7 @@ public class Home extends AppCompatActivity {
         FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
         InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
 
+        homePieChart = (PieChart) findViewById(R.id.homePieChart);
 
         ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
         WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
@@ -122,16 +117,20 @@ public class Home extends AppCompatActivity {
 
                 for( DataSnapshot ds :snapshot.getChildren()) {
                     SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
-                    assert saved_bills != null;
                     Double cost = (double) saved_bills.getAmount();
                     total = total + cost;
                     savedBillList.add(saved_bills);
                 }
 
-                Log.d("TAG", total + "");
-                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+                //Log.d("TAG", total + "");
 
-//                }
+                totalString=Double.toString(total);
+                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+                homePieChart.notifyDataSetChanged();
+                homePieChart.invalidate();
+                homePieChart.setCenterText("Rs:"+decfor.format(total));
+
+
             }
 
             @Override
@@ -139,6 +138,8 @@ public class Home extends AppCompatActivity {
                 ElectricTotal.setText("R.0.00");
             }
         });
+
+
 
 
 
@@ -205,7 +206,7 @@ public class Home extends AppCompatActivity {
 
 
         //homePieChart content
-        homePieChart = (PieChart) findViewById(R.id.homePieChart);
+
         homePieChart.getDescription().setEnabled(false);
         homePieChart.setExtraOffsets(5,10,5,5);
         homePieChart.setMaxAngle(180);
@@ -232,8 +233,9 @@ public class Home extends AppCompatActivity {
         homePieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         //text in center of pie chart
-        homePieChart.setCenterText("Rs. 12,800");
-
+//        homePieChart.setCenterText("Rs. 12,800");
+        homePieChart.setCenterText(totalString);
+//        homePieChart.setCenterText("hello");
 
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
 
