@@ -1,6 +1,8 @@
 package com.mobileapp.app;
 
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -49,7 +51,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Home extends AppCompatActivity {
@@ -144,25 +149,55 @@ public class Home extends AppCompatActivity {
 //        });
 
         //filter by date-------------------------
-        String startMonth="1";
-        String endMonth="12";
-        mDatabaseRef.child(""+uid).orderByChild("date").startAt(startMonth).endAt(endMonth).addValueEventListener(new ValueEventListener() {
+
+        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
                 Double total = 0.00;
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH)+1;
+
 
 
                 for( DataSnapshot ds :snapshot.getChildren()) {
                     SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
-                    Double cost = (double) saved_bills.getAmount();
-                    total = total + cost;
-                    savedBillList.add(saved_bills);
+
+                    String sDate1=ds.child("date").toString();
+                    String[] divide= sDate1.split("/");
+                    String year1 = divide[2];
+                    year1 = year1.replace(" }", "");
+                    String month1 = divide[1];
+                    String date = divide[0];
+
+                    Log.d(TAG,  year1+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii:");
+                    Log.d(TAG,  year+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii2:");
+
+                    if(Integer.toString(year).equals(year1)){
+                        Log.d(TAG,  month1+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii3:");
+                        Log.d(TAG,  month+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii4:");
+                        if(Integer.toString(month).equals(month1)){
+                            assert saved_bills != null;
+                            Double cost = (double) saved_bills.getAmount();
+                            total = total + cost;
+                            Log.d(TAG,  total+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii5:");
+
+                            savedBillList.add(saved_bills);
+                        }
+
+
+                    }
+
+
+
                 }
 
                 //Log.d("TAG", total + "");
 
                 totalString=Double.toString(total);
+                Log.d(TAG,  totalString+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii6:");
+
                 ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
                 homePieChart.notifyDataSetChanged();
                 homePieChart.invalidate();
