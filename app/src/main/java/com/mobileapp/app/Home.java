@@ -107,13 +107,48 @@ public class Home extends AppCompatActivity {
 
         //show total
         mAuth=FirebaseAuth.getInstance();
-        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
+//        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+////
+//                ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
+//                Double total = 0.00;
+//
+//
+//                for( DataSnapshot ds :snapshot.getChildren()) {
+//                    SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
+//                    Double cost = (double) saved_bills.getAmount();
+//                    total = total + cost;
+//                    savedBillList.add(saved_bills);
+//                }
+//
+//                //Log.d("TAG", total + "");
+//
+//                totalString=Double.toString(total);
+//                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+//                homePieChart.notifyDataSetChanged();
+//                homePieChart.invalidate();
+//                homePieChart.setCenterText("Rs:"+decfor.format(total));
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                ElectricTotal.setText("R.0.00");
+//            }
+//        });
 
+        //filter by date-------------------------
+        String startMonth="1";
+        String endMonth="12";
+        mDatabaseRef.child(""+uid).orderByChild("date").startAt(startMonth).endAt(endMonth).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
                 ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
                 Double total = 0.00;
+
 
                 for( DataSnapshot ds :snapshot.getChildren()) {
                     SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
@@ -130,14 +165,19 @@ public class Home extends AppCompatActivity {
                 homePieChart.invalidate();
                 homePieChart.setCenterText("Rs:"+decfor.format(total));
 
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                ElectricTotal.setText("R.0.00");
+
             }
         });
+
+
+
+//-------
+
+
 
 
 
