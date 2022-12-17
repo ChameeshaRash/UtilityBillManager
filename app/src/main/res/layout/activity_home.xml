@@ -51,15 +51,6 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/userName"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_toEndOf="@id/userNamePrefix"-->
-<!--            android:maxLength="64"-->
-<!--            android:text="Ravi"-->
-<!--            android:textSize="16sp"-->
-<!--            android:textStyle="bold" />-->
 
         <TextView
             android:id="@+id/userNamesuffix"
@@ -120,7 +111,6 @@
                 android:id="@+id/homePieChart"
                 android:layout_width="match_parent"
                 android:layout_height="260sp"
-
                 android:layout_alignParentTop="true"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/outline_grey_10" />
@@ -178,8 +168,7 @@
                             android:layout_width="300px"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_semibold"
-                            android:text="Rs.0.00"
-
+                            android:text="0.00\nLKR"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -222,8 +211,8 @@
                             android:id="@+id/waterCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.0.00"
                             android:fontFamily="@font/inter_semibold"
+                            android:text="0.00\nLKR"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -276,7 +265,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_semibold"
-                            android:text="Rs.0.00"
+                            android:text="0.00\nLKR"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"
@@ -319,8 +308,8 @@
                             android:id="@+id/fuelCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.0.00"
                             android:fontFamily="@font/inter_semibold"
+                            android:text="0.00\nLKR"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"

@@ -3,6 +3,7 @@ package com.mobileapp.app;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -55,6 +56,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class Home extends AppCompatActivity {
@@ -77,10 +79,6 @@ public class Home extends AppCompatActivity {
     //show total
     FirebaseAuth mAuth;
     TextView ElectricTotal,WaterTotal,FuelTotal,InternetTotal;
-    int totalElectricity;
-    int totalWater;
-    int totalFuel;
-    int totalInternet;
     String totalString="Fetching...";
 
 
@@ -106,6 +104,8 @@ public class Home extends AppCompatActivity {
         InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
 
         homePieChart = (PieChart) findViewById(R.id.homePieChart);
+        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
+
 
         ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
         WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
@@ -115,42 +115,10 @@ public class Home extends AppCompatActivity {
 
         //show total
         mAuth=FirebaseAuth.getInstance();
-//        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-////
-//                ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
-//                Double total = 0.00;
-//
-//
-//                for( DataSnapshot ds :snapshot.getChildren()) {
-//                    SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
-//                    Double cost = (double) saved_bills.getAmount();
-//                    total = total + cost;
-//                    savedBillList.add(saved_bills);
-//                }
-//
-//                //Log.d("TAG", total + "");
-//
-//                totalString=Double.toString(total);
-//                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
-//                homePieChart.notifyDataSetChanged();
-//                homePieChart.invalidate();
-//                homePieChart.setCenterText("Rs:"+decfor.format(total));
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                ElectricTotal.setText("R.0.00");
-//            }
-//        });
-
         //filter by date-------------------------
 
         mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
@@ -158,6 +126,11 @@ public class Home extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH)+1;
+
+                Double totalElectricity=0.00;
+                Double totalWater=0.00;
+                Double totalFuel=0.00;
+                Double totalInternet=0.00;
 
 
 
@@ -171,19 +144,26 @@ public class Home extends AppCompatActivity {
                     String month1 = divide[1];
                     String date = divide[0];
 
-                    Log.d(TAG,  year1+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii:");
-                    Log.d(TAG,  year+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii2:");
 
                     if(Integer.toString(year).equals(year1)){
-                        Log.d(TAG,  month1+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii3:");
-                        Log.d(TAG,  month+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii4:");
                         if(Integer.toString(month).equals(month1)){
                             assert saved_bills != null;
                             Double cost = (double) saved_bills.getAmount();
                             total = total + cost;
-                            Log.d(TAG,  total+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii5:");
-
                             savedBillList.add(saved_bills);
+
+                            //calculate total for each category
+
+                            if(Objects.equals(saved_bills.getUtilityType(), "Electricity")){
+                                totalElectricity+=cost;
+                            }else if(Objects.equals(saved_bills.getUtilityType(), "Water")){
+                                totalWater+=cost;
+                            }else if(Objects.equals(saved_bills.getUtilityType(), "Internet")){
+                                totalInternet+=cost;
+                            }else if(Objects.equals(saved_bills.getUtilityType(), "Fuel")){
+                                totalFuel+=cost;
+                            }
+
                         }
 
 
@@ -195,10 +175,16 @@ public class Home extends AppCompatActivity {
 
                 //Log.d("TAG", total + "");
 
-                totalString=Double.toString(total);
-                Log.d(TAG,  totalString+"raaaaaaaaaaaavvvvvvvvvvvvvvvviiiiiiiiiiiiii6:");
+                //display total
+                ElectricTotal.setText(""+(decfor.format(totalElectricity))+"\nLKR");
+                WaterTotal.setText(""+(decfor.format(totalWater))+"\nLKR");
+                InternetTotal.setText(""+(decfor.format(totalInternet))+"\nLKR");
+                FuelTotal.setText(""+(decfor.format(totalFuel))+"\nLKR");
 
-                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+
+
+
+
                 homePieChart.notifyDataSetChanged();
                 homePieChart.invalidate();
                 homePieChart.setCenterText("Rs:"+decfor.format(total));
@@ -210,15 +196,6 @@ public class Home extends AppCompatActivity {
 
             }
         });
-
-
-
-//-------
-
-
-
-
-
 
 
         //Add bill FAB
@@ -233,7 +210,7 @@ public class Home extends AppCompatActivity {
         });
 
 
-        //retrive data
+        //retrieve data
 
         recyclerViewHome=(RecyclerView)findViewById(R.id.recyclerView_Home);
         recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
@@ -311,13 +288,8 @@ public class Home extends AppCompatActivity {
         homePieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         //text in center of pie chart
-//        homePieChart.setCenterText("Rs. 12,800");
-        homePieChart.setCenterText(totalString);
-//        homePieChart.setCenterText("hello");
 
-        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
-
-        yValues.add(new PieEntry(3200,"Electricity"));
+        yValues.add(new PieEntry(1000,"Electricity"));
         yValues.add(new PieEntry(3200,"Water"));
         yValues.add(new PieEntry(3200,"Internet"));
         yValues.add(new PieEntry(3200,"Fuel"));
