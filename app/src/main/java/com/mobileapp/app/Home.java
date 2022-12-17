@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,14 +20,17 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.ArraySet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -37,38 +41,149 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Home extends AppCompatActivity {
 
+    private static final DecimalFormat decfor = new DecimalFormat("0.00");
+
+
     BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
-
     ExtendedFloatingActionButton addBillFAB;
-
     private ImageButton imgProfile;
-
-
-
     DatabaseReference mDatabaseRef;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String uid = user.getUid();
+    RecyclerView recyclerViewHome;
+    SavedBillsAdapter savedbillAdapterHome;
+
+
+    //show total
+    FirebaseAuth mAuth;
+    TextView ElectricTotal,WaterTotal,FuelTotal,InternetTotal;
+    int totalElectricity;
+    int totalWater;
+    int totalFuel;
+    int totalInternet;
+    String totalString="Fetching...";
+
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //status bar color change
-       // getWindow().setStatusBarColor(this.getResources().getColor(R.color.white));
         setContentView(R.layout.activity_home);
 
 
         //making reference to database
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("UtilityBill");
+
+
+        //show total
+        TotalBillCalculateAdapter adapter = new TotalBillCalculateAdapter();
+        ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
+        WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
+        FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
+        InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
+
+        homePieChart = (PieChart) findViewById(R.id.homePieChart);
+
+        ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
+        WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
+        FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
+        InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
+
+
+        //show total
+        mAuth=FirebaseAuth.getInstance();
+//        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+////
+//                ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
+//                Double total = 0.00;
+//
+//
+//                for( DataSnapshot ds :snapshot.getChildren()) {
+//                    SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
+//                    Double cost = (double) saved_bills.getAmount();
+//                    total = total + cost;
+//                    savedBillList.add(saved_bills);
+//                }
+//
+//                //Log.d("TAG", total + "");
+//
+//                totalString=Double.toString(total);
+//                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+//                homePieChart.notifyDataSetChanged();
+//                homePieChart.invalidate();
+//                homePieChart.setCenterText("Rs:"+decfor.format(total));
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                ElectricTotal.setText("R.0.00");
+//            }
+//        });
+
+        //filter by date-------------------------
+        String startMonth="1";
+        String endMonth="12";
+        mDatabaseRef.child(""+uid).orderByChild("date").startAt(startMonth).endAt(endMonth).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
+                Double total = 0.00;
+
+
+                for( DataSnapshot ds :snapshot.getChildren()) {
+                    SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
+                    Double cost = (double) saved_bills.getAmount();
+                    total = total + cost;
+                    savedBillList.add(saved_bills);
+                }
+
+                //Log.d("TAG", total + "");
+
+                totalString=Double.toString(total);
+                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+                homePieChart.notifyDataSetChanged();
+                homePieChart.invalidate();
+                homePieChart.setCenterText("Rs:"+decfor.format(total));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+//-------
+
+
+
+
+
 
 
         //Add bill FAB
@@ -81,6 +196,20 @@ public class Home extends AppCompatActivity {
 
             }
         });
+
+
+        //retrive data
+
+        recyclerViewHome=(RecyclerView)findViewById(R.id.recyclerView_Home);
+        recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
+
+        FirebaseRecyclerOptions<SavedBillsModel> options=
+                new FirebaseRecyclerOptions.Builder<SavedBillsModel>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("UtilityBill").child(""+uid),SavedBillsModel.class)
+                        .build();
+
+        savedbillAdapterHome=new SavedBillsAdapter(options);
+        recyclerViewHome.setAdapter(savedbillAdapterHome);
 
 
         //bottom navigation
@@ -120,7 +249,7 @@ public class Home extends AppCompatActivity {
 
 
         //homePieChart content
-        homePieChart = (PieChart) findViewById(R.id.homePieChart);
+
         homePieChart.getDescription().setEnabled(false);
         homePieChart.setExtraOffsets(5,10,5,5);
         homePieChart.setMaxAngle(180);
@@ -147,8 +276,9 @@ public class Home extends AppCompatActivity {
         homePieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
 
         //text in center of pie chart
-        homePieChart.setCenterText("Rs. 12,800");
-
+//        homePieChart.setCenterText("Rs. 12,800");
+        homePieChart.setCenterText(totalString);
+//        homePieChart.setCenterText("hello");
 
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
 
@@ -204,8 +334,6 @@ public class Home extends AppCompatActivity {
         dialog.setContentView(R.layout.add_bill_layout);
 
         final RadioGroup utilityType = dialog.findViewById(R.id.utilitySelection);
-
-
         final EditText amount = dialog.findViewById(R.id.billAmount);
         final EditText date = dialog.findViewById(R.id.dateInput);
 
@@ -237,7 +365,7 @@ public class Home extends AppCompatActivity {
         //date picker
 
 
-        DAOUtilityBill daoUtilityBill = new DAOUtilityBill();
+        UtilityBillModel utilityBillModel = new UtilityBillModel();
 
 
         addBill.setOnClickListener(v->{
@@ -249,7 +377,7 @@ public class Home extends AppCompatActivity {
                     Float.parseFloat(amount.getText().toString()),
                     date.getText().toString());
 
-            daoUtilityBill.add(utilityBill).addOnSuccessListener(suc->{
+            utilityBillModel.add(utilityBill).addOnSuccessListener(suc->{
 
                 Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
 
@@ -272,6 +400,22 @@ public class Home extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        savedbillAdapterHome.startListening();
+
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        savedbillAdapterHome.stopListening();
+    }
+
 
 
 

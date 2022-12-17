@@ -2,12 +2,12 @@ package com.mobileapp.app;
 
 public class SavedBillsModel {
     public String utilityType;
-    public int amount;
+    public float amount;
     public String date;
 
     public SavedBillsModel(){}
 
-    public SavedBillsModel(String utilityType, int amount, String date) {
+    public SavedBillsModel(String utilityType, float amount, String date) {
         this.utilityType = utilityType;
         this.amount = amount;
         this.date = date;
@@ -21,11 +21,11 @@ public class SavedBillsModel {
         this.utilityType = utilityType;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 

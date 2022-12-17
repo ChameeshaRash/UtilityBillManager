@@ -39,15 +39,6 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-//        login = (Button) findViewById(R.id.btnLogin);
-//        login.setOnClickListener(this);
-//
-//        //create a variable to hold the register button
-//        register = (MaterialButton) findViewById(R.id.btnregister);
-//        register.setOnClickListener(this);
-
-
-
     }
 
 //if user not logout this make intent to home

@@ -20,12 +20,24 @@
         <entry key="..\:/Users/chamr/Desktop/1App/UtilityBillManager/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/1App/UtilityBillManager/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/1App/UtilityBillManager/app/src/main/res/layout/activity_reset_password.xml" value="0.1" />
+<!-- <<<<<<< UI_Tweaks -->
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_forget_password.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_home.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_reset_password.xml" value="0.176" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_verify_email.xml" value="0.2097560975609756" />
+<!-- ======= -->
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_analytics.xml" value="0.136" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_saved_bills.xml" value="0.1" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/add_bill_layout.xml" value="0.1" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/bill_card.xml" value="0.21686746987951808" />
+        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
+<!-- >>>>>>> retrieve -->
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/drawable/buton_border.xml" value="0.196" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/drawable/shape_border.xml" value="0.175" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/layout/activity_bottomsheet_login.xml" value="0.264" />

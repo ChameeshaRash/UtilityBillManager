@@ -110,11 +110,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
                                     }
 
-
-
-                                     //User user = new User(account.getEmail());
-//                                     Intent intenttoSignIn=new Intent(getApplicationContext(),Home.class);
-//                                     startActivity(intenttoSignIn);
                                 }else{
                                     Toast.makeText(Login.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                                 }
