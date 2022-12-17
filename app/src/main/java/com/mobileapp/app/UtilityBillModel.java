@@ -14,13 +14,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class DAOUtilityBill {
+public class UtilityBillModel {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
 
     private final DatabaseReference databaseReference;
-    public DAOUtilityBill()
+    public UtilityBillModel()
     {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
 

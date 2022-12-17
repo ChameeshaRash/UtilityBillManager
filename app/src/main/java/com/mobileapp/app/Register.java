@@ -47,7 +47,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
      ImageButton btnSignUpwithGoogle;
      private GoogleSignInClient client;
 
-    private DatabaseReference databaseReference;
+
 
 
     FirebaseAuth mAuth;

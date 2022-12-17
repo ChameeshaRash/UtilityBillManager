@@ -173,7 +173,6 @@
                             android:id="@+id/electricityCardAmountHome"
                             android:layout_width="300px"
                             android:layout_height="wrap_content"
-                            android:text="Rs.0.00"
                             android:textAlignment="center"
                             android:maxLength="12"
                             android:textSize="20sp"

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +17,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.collection.ArraySet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,20 +36,30 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Home extends AppCompatActivity {
+
+    private static final DecimalFormat decfor = new DecimalFormat("0.00");
+
 
     BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
@@ -58,6 +73,19 @@ public class Home extends AppCompatActivity {
     SavedBillsAdapter savedbillAdapterHome;
 
 
+    //show total
+    FirebaseAuth mAuth;
+    TextView ElectricTotal,WaterTotal,FuelTotal,InternetTotal;
+    int totalElectricity;
+    int totalWater;
+    int totalFuel;
+    int totalInternet;
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +94,52 @@ public class Home extends AppCompatActivity {
 
         //making reference to database
         mDatabaseRef= FirebaseDatabase.getInstance().getReference("UtilityBill");
+
+
+        //show total
+        TotalBillCalculateAdapter adapter = new TotalBillCalculateAdapter();
+        ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
+        WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
+        FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
+        InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
+
+
+        ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
+        WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
+        FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
+        InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
+
+
+        //show total
+        mAuth=FirebaseAuth.getInstance();
+        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+                ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
+                Double total = 0.00;
+
+                for( DataSnapshot ds :snapshot.getChildren()) {
+                    SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
+                    assert saved_bills != null;
+                    Double cost = (double) saved_bills.getAmount();
+                    total = total + cost;
+                    savedBillList.add(saved_bills);
+                }
+
+                Log.d("TAG", total + "");
+                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+
+//                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                ElectricTotal.setText("R.0.00");
+            }
+        });
+
 
 
         //Add bill FAB
@@ -78,8 +152,6 @@ public class Home extends AppCompatActivity {
 
             }
         });
-
-
 
 
         //retrive data
@@ -223,7 +295,7 @@ public class Home extends AppCompatActivity {
         Button addBill = dialog.findViewById(R.id.btnAddBill);
 
 
-        DAOUtilityBill daoUtilityBill = new DAOUtilityBill();
+        UtilityBillModel utilityBillModel = new UtilityBillModel();
 
 
         addBill.setOnClickListener(v->{
@@ -235,7 +307,7 @@ public class Home extends AppCompatActivity {
                     Float.parseFloat(amount.getText().toString()),
                     date.getText().toString());
 
-            daoUtilityBill.add(utilityBill).addOnSuccessListener(suc->{
+            utilityBillModel.add(utilityBill).addOnSuccessListener(suc->{
 
                 Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
 
@@ -264,6 +336,8 @@ public class Home extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         savedbillAdapterHome.startListening();
+
+
     }
 
     @Override
@@ -271,6 +345,7 @@ public class Home extends AppCompatActivity {
         super.onStop();
         savedbillAdapterHome.stopListening();
     }
+
 
 
 
