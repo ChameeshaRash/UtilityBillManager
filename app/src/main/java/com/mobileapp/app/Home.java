@@ -1,6 +1,7 @@
 package com.mobileapp.app;
 
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -50,6 +51,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Home extends AppCompatActivity {
@@ -72,13 +74,50 @@ public class Home extends AppCompatActivity {
     //show total
     FirebaseAuth mAuth;
     TextView ElectricTotal,WaterTotal,FuelTotal,InternetTotal;
-    int totalElectricity;
-    int totalWater;
-    int totalFuel;
-    int totalInternet;
     String totalString="Fetching...";
 
 
+    Double totalElectricity=0.00;
+    Double totalWater=0.00;
+    Double totalFuel=0.00;
+    Double totalInternet=0.00;
+
+    int electricityPie;
+    int waterPie;
+    int internetPie;
+    int fuelPie;
+
+    public int getElectricityPie() {
+        return electricityPie;
+    }
+
+    public void setElectricityPie(int electricityPie) {
+        this.electricityPie = electricityPie;
+    }
+
+    public int getWaterPie() {
+        return waterPie;
+    }
+
+    public void setWaterPie(int waterPie) {
+        this.waterPie = waterPie;
+    }
+
+    public int getInternetPie() {
+        return internetPie;
+    }
+
+    public void setInternetPie(int internetPie) {
+        this.internetPie = internetPie;
+    }
+
+    public int getFuelPie() {
+        return fuelPie;
+    }
+
+    public void setFuelPie(int fuelPie) {
+        this.fuelPie = fuelPie;
+    }
 
 
 
@@ -101,72 +140,137 @@ public class Home extends AppCompatActivity {
         InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
 
         homePieChart = (PieChart) findViewById(R.id.homePieChart);
+        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
+        PieDataSet dataSet = new PieDataSet(yValues,"");
+        PieData data =new PieData((dataSet));
+
+
+        homePieChart.setCenterText(totalString);//fetching....
 
         ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
         WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
         FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
         InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
 
+        //homePieChart content
+        homePieChart.getDescription().setEnabled(false);
+        homePieChart.setExtraOffsets(5,10,5,5);
+        homePieChart.setMaxAngle(180);
+        homePieChart.setRotationAngle(180);
+        homePieChart.setCenterTextOffset(0f,-20f);
+        homePieChart.setCenterTextSize(24);
+        homePieChart.setCenterTextColor(this.getResources().getColor(R.color.grey_100));
+        homePieChart.setExtraBottomOffset(-50f);
+        homePieChart.setExtraTopOffset(16f);
+
+
+        homePieChart.setTouchEnabled(false); //disable interaction with chart
+        homePieChart.setDragDecelerationFrictionCoef(0.5f);
+        homePieChart.setDrawHoleEnabled(true);
+        homePieChart.setHoleRadius(80f);
+        homePieChart.setDrawEntryLabels(false);
+        homePieChart.setDrawRoundedSlices(false);
+        homePieChart.setHoleColor(this.getResources().getColor(R.color.white));
+        homePieChart.setTransparentCircleRadius(0f);
+
+        homePieChart.getLegend().setYOffset(26f);
+        homePieChart.getLegend().setXEntrySpace(16f);
+        homePieChart.getLegend().setTextSize(16f);
+        homePieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+
+
+        //catch the profile logo to make intent to profile page
+        imgProfile=(ImageButton) findViewById(R.id.imgProfile);
+
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(Home.this, UserProfile.class));
+
+            }
+        });
 
         //show total
         mAuth=FirebaseAuth.getInstance();
-//        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-////
-//                ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
-//                Double total = 0.00;
-//
-//
-//                for( DataSnapshot ds :snapshot.getChildren()) {
-//                    SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
-//                    Double cost = (double) saved_bills.getAmount();
-//                    total = total + cost;
-//                    savedBillList.add(saved_bills);
-//                }
-//
-//                //Log.d("TAG", total + "");
-//
-//                totalString=Double.toString(total);
-//                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
-//                homePieChart.notifyDataSetChanged();
-//                homePieChart.invalidate();
-//                homePieChart.setCenterText("Rs:"+decfor.format(total));
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                ElectricTotal.setText("R.0.00");
-//            }
-//        });
-
         //filter by date-------------------------
-        String startMonth="1";
-        String endMonth="12";
-        mDatabaseRef.child(""+uid).orderByChild("date").startAt(startMonth).endAt(endMonth).addValueEventListener(new ValueEventListener() {
+
+        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
                 Double total = 0.00;
-
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH)+1;
 
                 for( DataSnapshot ds :snapshot.getChildren()) {
                     SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
-                    Double cost = (double) saved_bills.getAmount();
-                    total = total + cost;
-                    savedBillList.add(saved_bills);
+
+                    String sDate1=ds.child("date").toString();
+                    String[] divide= sDate1.split("/");
+                    String year1 = divide[2];
+                    year1 = year1.replace(" }", "");
+                    String month1 = divide[1];
+                    String date = divide[0];//not use
+
+
+                    if(Integer.toString(year).equals(year1)){
+                        if(Integer.toString(month).equals(month1)){
+                            assert saved_bills != null;
+                            Double cost = (double) saved_bills.getAmount();
+                            total = total + cost;
+                            savedBillList.add(saved_bills);
+
+                            //calculate total for each category
+
+                            if(Objects.equals(saved_bills.getUtilityType(), "Electricity")){
+                                totalElectricity+=cost;
+                            }else if(Objects.equals(saved_bills.getUtilityType(), "Water")){
+                                totalWater+=cost;
+                            }else if(Objects.equals(saved_bills.getUtilityType(), "Internet")){
+                                totalInternet+=cost;
+                            }else if(Objects.equals(saved_bills.getUtilityType(), "Fuel")){
+                                totalFuel+=cost;
+                            }
+
+                        }
+
+
+                    }
+
+
+
                 }
 
                 //Log.d("TAG", total + "");
 
-                totalString=Double.toString(total);
-                ElectricTotal.setText(""+(decfor.format(total))+"\nLKR");
+                //display total
+                ElectricTotal.setText(""+(decfor.format(totalElectricity))+"\nLKR");
+                WaterTotal.setText(""+(decfor.format(totalWater))+"\nLKR");
+                InternetTotal.setText(""+(decfor.format(totalInternet))+"\nLKR");
+                FuelTotal.setText(""+(decfor.format(totalFuel))+"\nLKR");
+
+
                 homePieChart.notifyDataSetChanged();
                 homePieChart.invalidate();
                 homePieChart.setCenterText("Rs:"+decfor.format(total));
+
+
+                setElectricityPie((int)Math.round(totalElectricity));
+                Log.d("TAG", getElectricityPie() + "iiiiiiiiiiiiiiiiiiiiTotalElec");
+
+                setWaterPie((int)Math.round(totalWater));
+                setInternetPie((int)Math.round(totalInternet));
+                setFuelPie((int)Math.round(totalFuel));
+
+
+                yValues.add(new PieEntry(getElectricityPie(),"Electricity"));
+                yValues.add(new PieEntry(getWaterPie(),"Water"));
+                yValues.add(new PieEntry(getInternetPie(),"Internet"));
+                yValues.add(new PieEntry(getFuelPie(),"Fuel"));
+                homePieChart.setData(data);
 
             }
 
@@ -174,16 +278,26 @@ public class Home extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
 
 
+        ArrayList<Integer> pieColors = new ArrayList<>();
+        pieColors.add(this.getResources().getColor(R.color.orange));
+        pieColors.add(this.getResources().getColor(R.color.blue));
+        pieColors.add(this.getResources().getColor(R.color.purple));
+        pieColors.add(this.getResources().getColor(R.color.green));
 
-//-------
+        //animate pieChart
+        homePieChart.animateY(1000, Easing.EaseInOutCirc);
 
+        dataSet.setSliceSpace(4f);
+        dataSet.setSelectionShift(0f);
+        dataSet.setColors(pieColors);
+        dataSet.setDrawValues(false);
 
-
-
-
+        data.setValueTextSize(12f);
+        data.setValueTextColor(this.getResources().getColor(R.color.blue));
 
 
         //Add bill FAB
@@ -198,7 +312,7 @@ public class Home extends AppCompatActivity {
         });
 
 
-        //retrive data
+        //retrieve data
 
         recyclerViewHome=(RecyclerView)findViewById(R.id.recyclerView_Home);
         recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
@@ -245,83 +359,6 @@ public class Home extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
-        //homePieChart content
-
-        homePieChart.getDescription().setEnabled(false);
-        homePieChart.setExtraOffsets(5,10,5,5);
-        homePieChart.setMaxAngle(180);
-        homePieChart.setRotationAngle(180);
-        homePieChart.setCenterTextOffset(0f,-20f);
-        homePieChart.setCenterTextSize(24);
-        homePieChart.setCenterTextColor(this.getResources().getColor(R.color.grey_100));
-        homePieChart.setExtraBottomOffset(-50f);
-        homePieChart.setExtraTopOffset(16f);
-
-
-        homePieChart.setTouchEnabled(false); //disable interaction with chart
-        homePieChart.setDragDecelerationFrictionCoef(0.5f);
-        homePieChart.setDrawHoleEnabled(true);
-        homePieChart.setHoleRadius(80f);
-        homePieChart.setDrawEntryLabels(false);
-        homePieChart.setDrawRoundedSlices(false);
-        homePieChart.setHoleColor(this.getResources().getColor(R.color.white));
-        homePieChart.setTransparentCircleRadius(0f);
-
-        homePieChart.getLegend().setYOffset(26f);
-        homePieChart.getLegend().setXEntrySpace(16f);
-        homePieChart.getLegend().setTextSize(16f);
-        homePieChart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-
-        //text in center of pie chart
-//        homePieChart.setCenterText("Rs. 12,800");
-        homePieChart.setCenterText(totalString);
-//        homePieChart.setCenterText("hello");
-
-        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
-
-        yValues.add(new PieEntry(3200,"Electricity"));
-        yValues.add(new PieEntry(3200,"Water"));
-        yValues.add(new PieEntry(3200,"Internet"));
-        yValues.add(new PieEntry(3200,"Fuel"));
-
-        ArrayList<Integer> pieColors = new ArrayList<>();
-        pieColors.add(this.getResources().getColor(R.color.orange));
-        pieColors.add(this.getResources().getColor(R.color.purple));
-        pieColors.add(this.getResources().getColor(R.color.blue));
-        pieColors.add(this.getResources().getColor(R.color.green));
-
-        //animate pieChart
-        homePieChart.animateY(1000, Easing.EaseInOutCirc);
-
-
-        PieDataSet dataSet = new PieDataSet(yValues,"");
-        dataSet.setSliceSpace(4f);
-        dataSet.setSelectionShift(0f);
-        dataSet.setColors(pieColors);
-        dataSet.setDrawValues(false);
-
-        PieData data =new PieData((dataSet));
-        data.setValueTextSize(12f);
-        data.setValueTextColor(this.getResources().getColor(R.color.blue));
-
-        homePieChart.setData(data);
-
-        //catch the profile logo to make intent to profile page
-        imgProfile=(ImageButton) findViewById(R.id.imgProfile);
-
-        imgProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Home.this, UserProfile.class));
-
-            }
-        });
-
-
 
     }
 
