@@ -77,10 +77,7 @@ public class Home extends AppCompatActivity {
     String totalString="Fetching...";
     TextView viewAll;
 
-    Double totalElectricity=0.00;
-    Double totalWater=0.00;
-    Double totalFuel=0.00;
-    Double totalInternet=0.00;
+
 
     int electricityPie;
     int waterPie;
@@ -196,6 +193,10 @@ public class Home extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
                 Double total = 0.00;
+                Double totalElectricity=0.00;
+                Double totalWater=0.00;
+                Double totalFuel=0.00;
+                Double totalInternet=0.00;
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH)+1;
@@ -220,7 +221,7 @@ public class Home extends AppCompatActivity {
                             savedBillList.add(saved_bills);
 
                             //calculate total for each category
-                            Log.d("chammmmeee", saved_bills.getUtilityType() + "");
+                            Log.d("chammmmeee", totalElectricity + "");
                             if(Objects.equals(saved_bills.getUtilityType(), "Electricity")){
                                 totalElectricity+=cost;
                             }else if(Objects.equals(saved_bills.getUtilityType(), "Water")){
@@ -235,6 +236,7 @@ public class Home extends AppCompatActivity {
 
 
                     }
+
 
 
 
@@ -270,8 +272,7 @@ public class Home extends AppCompatActivity {
                 yValues.add(new PieEntry(getInternetPie(),"Internet"));
                 yValues.add(new PieEntry(getFuelPie(),"Fuel"));
                 homePieChart.setData(data);
-                homePieChart.notifyDataSetChanged();
-                homePieChart.invalidate();
+
 
                 homePieChart.animateY(1000, Easing.EaseInOutCirc);//animate pieChart
 
@@ -427,7 +428,7 @@ public class Home extends AppCompatActivity {
 
             utilityBillModel.add(utilityBill).addOnSuccessListener(suc->{
 
-                Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
                 dialog.setContentView(R.layout.add_bil_success_layout);
 
                 Button addAnotherBill = dialog.findViewById(R.id.btnAddBillSuccessAnother);

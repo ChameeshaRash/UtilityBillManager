@@ -65,10 +65,7 @@ public class Analytics extends AppCompatActivity {
     FirebaseAuth mAuth;
     TextView ElectricTotal,WaterTotal,FuelTotal,InternetTotal;
 
-    Double totalElectricity=0.00;
-    Double totalWater=0.00;
-    Double totalFuel=0.00;
-    Double totalInternet=0.00;
+
 
 
     @Override
@@ -110,6 +107,10 @@ public class Analytics extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
                 Double total = 0.00;
+                Double totalElectricityAnalatics=0.00;
+                Double totalWaterAnalatics=0.00;
+                Double totalFuelAnalatics=0.00;
+                Double totalInternetAnalatics=0.00;
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH)+1;
@@ -135,13 +136,13 @@ public class Analytics extends AppCompatActivity {
                             //calculate total for each category
 
                             if(Objects.equals(saved_bills.getUtilityType(), "Electricity")){
-                                totalElectricity+=cost;
+                                totalElectricityAnalatics+=cost;
                             }else if(Objects.equals(saved_bills.getUtilityType(), "Water")){
-                                totalWater+=cost;
+                                totalWaterAnalatics+=cost;
                             }else if(Objects.equals(saved_bills.getUtilityType(), "Internet")){
-                                totalInternet+=cost;
+                                totalInternetAnalatics+=cost;
                             }else if(Objects.equals(saved_bills.getUtilityType(), "Fuel")){
-                                totalFuel+=cost;
+                                totalFuelAnalatics+=cost;
                             }
 
                         }
@@ -156,10 +157,10 @@ public class Analytics extends AppCompatActivity {
                 //Log.d("TAG", total + "");
 
                 //display total
-                ElectricTotal.setText(""+(decfor.format(totalElectricity))+"\nLKR");
-                WaterTotal.setText(""+(decfor.format(totalWater))+"\nLKR");
-                InternetTotal.setText(""+(decfor.format(totalInternet))+"\nLKR");
-                FuelTotal.setText(""+(decfor.format(totalFuel))+"\nLKR");
+                ElectricTotal.setText(""+(decfor.format(totalElectricityAnalatics))+"\nLKR");
+                WaterTotal.setText(""+(decfor.format(totalWaterAnalatics))+"\nLKR");
+                InternetTotal.setText(""+(decfor.format(totalInternetAnalatics))+"\nLKR");
+                FuelTotal.setText(""+(decfor.format(totalFuelAnalatics))+"\nLKR");
 
             }
 
@@ -284,7 +285,7 @@ public class Analytics extends AppCompatActivity {
 
             utilityBillModel.add(utilityBill).addOnSuccessListener(suc->{
 
-                Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
                 dialog.setContentView(R.layout.add_bil_success_layout);
 
                 Button addAnotherBill = dialog.findViewById(R.id.btnAddBillSuccessAnother);
