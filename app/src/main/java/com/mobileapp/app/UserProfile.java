@@ -8,15 +8,20 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class UserProfile extends AppCompatActivity {
 
     private Button logout;
     BottomNavigationView bottomNavigationView;
+    ExtendedFloatingActionButton addBillFAB;
+    DatabaseReference mDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,7 @@ public class UserProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(UserProfile.this,MainActivity.class));
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
             }
         });

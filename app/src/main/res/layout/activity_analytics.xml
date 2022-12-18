@@ -29,7 +29,7 @@
                 app:cardElevation="0dp">
 
                 <ImageButton
-                    android:id="@+id/imgProfile"
+                    android:id="@+id/imgProfileAnalytics"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="0dp"
@@ -173,7 +173,7 @@
                                 android:layout_marginTop="16dp"/>
 
                             <TextView
-                                android:id="@+id/electricityCardAmount"
+                                android:id="@+id/electricityCardAmountAnalytics"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rs. 3,200"
@@ -216,7 +216,7 @@
                                 android:layout_marginTop="16dp"/>
 
                             <TextView
-                                android:id="@+id/waterCardAmount"
+                                android:id="@+id/waterCardAmountAnalytics"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rs. 3,200"
@@ -268,7 +268,7 @@
                                 android:layout_marginTop="16dp"/>
 
                             <TextView
-                                android:id="@+id/internetCardAmount"
+                                android:id="@+id/internetCardAmountAnalytics"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rs. 3,200"
@@ -311,7 +311,7 @@
                                 android:layout_marginTop="16dp"/>
 
                             <TextView
-                                android:id="@+id/fuelCardAmount"
+                                android:id="@+id/fuelCardAmountAnalytics"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rs. 3,200"

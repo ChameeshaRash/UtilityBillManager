@@ -60,7 +60,6 @@ public class Home extends AppCompatActivity {
 
     private static final DecimalFormat decfor = new DecimalFormat("0.00");
 
-
     BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
     ExtendedFloatingActionButton addBillFAB;
@@ -72,13 +71,11 @@ public class Home extends AppCompatActivity {
     RecyclerView recyclerViewHome;
     SavedBillsAdapter savedbillAdapterHome;
 
-
     //show total
     FirebaseAuth mAuth;
     TextView ElectricTotal,WaterTotal,FuelTotal,InternetTotal;
     String totalString="Fetching...";
     TextView viewAll;
-
 
     Double totalElectricity=0.00;
     Double totalWater=0.00;
@@ -138,7 +135,6 @@ public class Home extends AppCompatActivity {
 
 
         //show total
-        TotalBillCalculateAdapter adapter = new TotalBillCalculateAdapter();
         ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
         WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
         FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
@@ -151,11 +147,6 @@ public class Home extends AppCompatActivity {
 
 
         homePieChart.setCenterText(totalString);//fetching....
-
-        ElectricTotal=(TextView)findViewById(R.id.electricityCardAmountHome);
-        WaterTotal=(TextView)findViewById(R.id.waterCardAmountHome);
-        FuelTotal=(TextView)findViewById(R.id.fuelCardAmountHome);
-        InternetTotal=(TextView)findViewById(R.id.internetCardAmountHome);
 
         //homePieChart content
         homePieChart.getDescription().setEnabled(false);
@@ -190,8 +181,7 @@ public class Home extends AppCompatActivity {
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Home.this, UserProfile.class));
+               startActivity(new Intent(Home.this, UserProfile.class));
 
             }
         });
@@ -320,7 +310,6 @@ public class Home extends AppCompatActivity {
 
 
         //retrieve data
-
         recyclerViewHome=(RecyclerView)findViewById(R.id.recyclerView_Home);
         recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
 
@@ -331,7 +320,6 @@ public class Home extends AppCompatActivity {
 
         savedbillAdapterHome=new SavedBillsAdapter(options);
         recyclerViewHome.setAdapter(savedbillAdapterHome);
-
 
         //bottom navigation
 
