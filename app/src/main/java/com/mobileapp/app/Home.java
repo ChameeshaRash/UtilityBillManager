@@ -212,6 +212,7 @@ public class Home extends AppCompatActivity {
 
 
                     if(Integer.toString(year).equals(year1)){
+
                         if(Integer.toString(month).equals(month1)){
                             assert saved_bills != null;
                             Double cost = (double) saved_bills.getAmount();
@@ -219,7 +220,7 @@ public class Home extends AppCompatActivity {
                             savedBillList.add(saved_bills);
 
                             //calculate total for each category
-
+                            Log.d("chammmmeee", saved_bills.getUtilityType() + "");
                             if(Objects.equals(saved_bills.getUtilityType(), "Electricity")){
                                 totalElectricity+=cost;
                             }else if(Objects.equals(saved_bills.getUtilityType(), "Water")){
@@ -241,6 +242,7 @@ public class Home extends AppCompatActivity {
 
                 //Log.d("TAG", total + "");
 
+
                 //display total
                 ElectricTotal.setText(""+(decfor.format(totalElectricity))+"\nLKR");
                 WaterTotal.setText(""+(decfor.format(totalWater))+"\nLKR");
@@ -261,11 +263,15 @@ public class Home extends AppCompatActivity {
                 setFuelPie((int)Math.round(totalFuel));
 
 
+
+                yValues.clear();
                 yValues.add(new PieEntry(getElectricityPie(),"Electricity"));
                 yValues.add(new PieEntry(getWaterPie(),"Water"));
                 yValues.add(new PieEntry(getInternetPie(),"Internet"));
                 yValues.add(new PieEntry(getFuelPie(),"Fuel"));
                 homePieChart.setData(data);
+                homePieChart.notifyDataSetChanged();
+                homePieChart.invalidate();
 
                 homePieChart.animateY(1000, Easing.EaseInOutCirc);//animate pieChart
 
@@ -307,6 +313,7 @@ public class Home extends AppCompatActivity {
 
             }
         });
+
 
 
         //retrieve data
