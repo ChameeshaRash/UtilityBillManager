@@ -380,6 +380,18 @@ public class Home extends AppCompatActivity {
             utilityBillModel.add(utilityBill).addOnSuccessListener(suc->{
 
                 Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
+                dialog.setContentView(R.layout.add_bil_success_layout);
+
+                Button addAnotherBill = dialog.findViewById(R.id.btnAddBillSuccessAnother);
+                addAnotherBill.setOnClickListener(y->{
+                    dialog.cancel();
+                    showDialog();
+                });
+
+                Button addBillSuccessCancel = dialog.findViewById(R.id.btnAddBillSuccessCancel);
+                addBillSuccessCancel.setOnClickListener(z->{
+                    dialog.cancel();
+                });
 
 
 
