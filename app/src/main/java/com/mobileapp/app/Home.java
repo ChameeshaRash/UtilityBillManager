@@ -399,6 +399,21 @@ public class Home extends AppCompatActivity {
 
                 Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
 
+                dialog.setContentView(R.layout.add_bill_failure);
+                TextView subtitle = dialog.findViewById(R.id.txtAddBillFailSubTitle);
+                subtitle.setText(""+er.getMessage());
+                Button addBillTryAgain = dialog.findViewById(R.id.btnAddBillTryAgain);
+                addBillTryAgain.setOnClickListener(w->{
+                    dialog.cancel();
+                    showDialog();
+                });
+
+                Button addBillFailCancel = dialog.findViewById(R.id.btnAddBillFailCancel);
+                addBillFailCancel.setOnClickListener(u->{
+                    dialog.cancel();
+                });
+
+
             });
 
 
