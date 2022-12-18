@@ -126,8 +126,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                                                   }
                                               });
 //-------------------------------------------------------------------------------------------
-//                                     Intent intenttoSignIn=new Intent(getApplicationContext(),Home.class);
-//                                     startActivity(intenttoSignIn);
+//
                                 }else{
                                     Toast.makeText(Register.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                                 }

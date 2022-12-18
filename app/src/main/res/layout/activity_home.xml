@@ -120,61 +120,60 @@
             <LinearLayout
 
                 android:id="@+id/categoryCardsContainer"
-                android:layout_below="@id/homePieChart"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp">
+                android:layout_below="@id/homePieChart"
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical">
 
                 <!--First Row-->
                 <LinearLayout
                     android:id="@+id/cardRow1"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    >
+                    android:orientation="horizontal">
 
                     <!--Electricity Card-->
                     <LinearLayout
                         android:id="@+id/electricityCard"
-                        android:orientation="vertical"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
                         android:background="@drawable/outline_grey_10"
                         android:gravity="center"
-                        android:padding="24dp"
-                        android:layout_marginRight="16dp">
+                        android:orientation="vertical"
+                        android:padding="24dp">
 
                         <ImageView
                             android:id="@+id/electricityCardIcon"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/electricity_card_img"/>
+                            android:src="@drawable/electricity_card_img" />
 
                         <TextView
                             android:id="@+id/electricityCardTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:text="Electricity"
                             android:textAlignment="center"
-                            android:textSize="16sp"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="16dp"/>
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/electricityCardAmountHome"
                             android:layout_width="300px"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/inter_semibold"
+                            android:maxLength="12"
                             android:text="0.00\nLKR"
                             android:textAlignment="center"
-                            android:maxLength="12"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="4dp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -182,12 +181,12 @@
                     <!--water Card-->
                     <LinearLayout
                         android:id="@+id/waterCard"
-                        android:orientation="vertical"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="@drawable/outline_grey_10"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="24dp">
 
 
@@ -195,30 +194,30 @@
                             android:id="@+id/waterCardIcon"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/water_card_img"/>
+                            android:src="@drawable/water_card_img" />
 
                         <TextView
                             android:id="@+id/waterCardTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:text="Water"
                             android:textAlignment="center"
-                            android:textSize="16sp"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="16dp"/>
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/waterCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/inter_semibold"
+                            android:maxLength="12"
                             android:text="0.00\nLKR"
                             android:textAlignment="center"
-                            android:maxLength="12"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="4dp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -228,50 +227,50 @@
                 <!--Second Row-->
                 <LinearLayout
                     android:id="@+id/cardRow2"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <!--Internet Card-->
                     <LinearLayout
                         android:id="@+id/internetCard"
-                        android:orientation="vertical"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
                         android:background="@drawable/outline_grey_10"
                         android:gravity="center"
-                        android:padding="24dp"
-                        android:layout_marginRight="16dp">
+                        android:orientation="vertical"
+                        android:padding="24dp">
 
                         <ImageView
                             android:id="@+id/internetCardIcon"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/internet_card_img"/>
+                            android:src="@drawable/internet_card_img" />
 
                         <TextView
                             android:id="@+id/internetCardTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:text="Internet"
                             android:textAlignment="center"
-                            android:textSize="16sp"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="16dp"/>
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/internetCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/inter_semibold"
+                            android:maxLength="12"
                             android:text="0.00\nLKR"
                             android:textAlignment="center"
-                            android:maxLength="12"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="4dp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -279,12 +278,12 @@
                     <!--Fuel Card-->
                     <LinearLayout
                         android:id="@+id/fuelCard"
-                        android:orientation="vertical"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="@drawable/outline_grey_10"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="24dp">
 
 
@@ -292,36 +291,35 @@
                             android:id="@+id/fuelCardIcon"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/fuel_card_img"/>
+                            android:src="@drawable/fuel_card_img" />
 
                         <TextView
                             android:id="@+id/fuelCardTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:text="Fuel"
                             android:textAlignment="center"
-                            android:textSize="16sp"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="16dp"/>
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/fuelCardAmountHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:fontFamily="@font/inter_semibold"
+                            android:maxLength="12"
                             android:text="0.00\nLKR"
                             android:textAlignment="center"
-                            android:maxLength="12"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
                             android:textColor="@color/grey_100"
-                            android:layout_marginTop="4dp"/>
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
 
                 </LinearLayout>
-
 
 
             </LinearLayout>
@@ -350,8 +348,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:clickable="true"
-                    android:text="View all"
                     android:paddingVertical="4dp"
+                    android:text="View all"
                     android:textColor="@color/grey_60"
                     android:textSize="14sp" />
 

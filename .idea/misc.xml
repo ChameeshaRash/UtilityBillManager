@@ -3,28 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_analytics.xml" value="0.2" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_forget_password.xml" value="0.33" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_home.xml" value="0.28613138686131384" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_register.xml" value="0.17" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_reset_password.xml" value="0.25" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_saved_bills.xml" value="0.25" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_screenshots.xml" value="0.1675929884566054" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/activity_user_profile.xml" value="0.1675929884566054" />
-        <entry key="..\:/UBMNC2/app/src/main/res/layout/add_bill_layout.xml" value="0.1675929884566054" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/activity_analytics.xml" value="0.22" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/activity_home.xml" value="0.16547066272688898" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/activity_login.xml" value="0.1671654553227875" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/activity_saved_bills.xml" value="0.20416666666666666" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/activity_user_profile.xml" value="0.20416666666666666" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/add_bil_success_layout.xml" value="0.22" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/add_bill_failure.xml" value="0.15348439504061565" />
-        <entry key="..\:/UBMNC3/app/src/main/res/layout/add_bill_layout.xml" value="0.1675929884566054" />
-        <entry key="..\:/UBMNC3/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
-        <entry key="..\:/UBMNC3/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/Users/chamr/.gradle/caches/transforms-3/48e56c303e0d31753f46166d8e551339/transformed/appcompat-1.5.1/res/drawable/abc_btn_default_mtrl_shape.xml" value="0.196" />
         <entry key="..\:/Users/chamr/Desktop/1App/UtilityBillManager/app/src/main/res/layout/activity_forget_password.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/1App/UtilityBillManager/app/src/main/res/layout/activity_login.xml" value="0.1" />
@@ -37,16 +15,8 @@
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_reset_password.xml" value="0.176" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_verify_email.xml" value="0.2097560975609756" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_analytics.xml" value="0.136" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_home.xml" value="0.1" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_register.xml" value="0.2" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_saved_bills.xml" value="0.1" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/activity_user_profile.xml" value="0.25" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/add_bill_layout.xml" value="0.1" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/layout/bill_card.xml" value="0.21686746987951808" />
-        <entry key="..\:/Users/chamr/Desktop/5App/UtilityBillManager/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
-        <entry key="..\:/Users/chamr/Desktop/6App/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/chamr/Desktop/7App/UtilityBillManager/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/chamr/Desktop/7App/UtilityBillManager/app/src/main/res/layout/activity_login.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/drawable/buton_border.xml" value="0.196" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/drawable/shape_border.xml" value="0.175" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/layout/activity_bottomsheet_login.xml" value="0.264" />

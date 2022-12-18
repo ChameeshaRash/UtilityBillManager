@@ -119,9 +119,9 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="32dp"
             android:background="@drawable/outlined_button_background"
+            android:fontFamily="@font/inter_semibold"
             android:paddingVertical="14dp"
             android:text="Login"
-            android:fontFamily="@font/inter_semibold"
             android:textAllCaps="false"
             android:textSize="16sp"
             app:cornerRadius="16dp" />

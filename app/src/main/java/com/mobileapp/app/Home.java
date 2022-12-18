@@ -56,6 +56,8 @@ import java.util.Objects;
 
 public class Home extends AppCompatActivity {
 
+
+
     private static final DecimalFormat decfor = new DecimalFormat("0.00");
 
 
@@ -75,6 +77,7 @@ public class Home extends AppCompatActivity {
     FirebaseAuth mAuth;
     TextView ElectricTotal,WaterTotal,FuelTotal,InternetTotal;
     String totalString="Fetching...";
+    TextView viewAll;
 
 
     Double totalElectricity=0.00;
@@ -126,6 +129,8 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        viewAll=(TextView)findViewById(R.id.viewAllRecentBills);
 
 
         //making reference to database
@@ -272,6 +277,9 @@ public class Home extends AppCompatActivity {
                 yValues.add(new PieEntry(getFuelPie(),"Fuel"));
                 homePieChart.setData(data);
 
+                homePieChart.animateY(1000, Easing.EaseInOutCirc);//animate pieChart
+
+
             }
 
             @Override
@@ -288,8 +296,7 @@ public class Home extends AppCompatActivity {
         pieColors.add(this.getResources().getColor(R.color.purple));
         pieColors.add(this.getResources().getColor(R.color.green));
 
-        //animate pieChart
-        homePieChart.animateY(1000, Easing.EaseInOutCirc);
+
 
         dataSet.setSliceSpace(4f);
         dataSet.setSelectionShift(0f);
@@ -332,6 +339,7 @@ public class Home extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.home);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -357,6 +365,14 @@ public class Home extends AppCompatActivity {
                 }
 
                 return false;
+            }
+        });
+
+        viewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentToViewHistory=new Intent(getApplicationContext(),SavedBills.class);
+                startActivity(intentToViewHistory);
             }
         });
 
@@ -479,6 +495,9 @@ public class Home extends AppCompatActivity {
         super.onStop();
         savedbillAdapterHome.stopListening();
     }
+
+
+
 
 
 
