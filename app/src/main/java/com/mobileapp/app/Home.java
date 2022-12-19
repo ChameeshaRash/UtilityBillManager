@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -142,7 +143,9 @@ public class Home extends AppCompatActivity {
         PieDataSet dataSet = new PieDataSet(yValues,"");
         PieData data =new PieData((dataSet));
 
-
+        homePieChart.setNoDataText("Fetching Data...");
+        homePieChart.setNoDataTextColor(R.color.grey_100);
+        homePieChart.setNoDataTextTypeface(Typeface.DEFAULT_BOLD);
         homePieChart.setCenterText(totalString);//fetching....
 
         //homePieChart content
