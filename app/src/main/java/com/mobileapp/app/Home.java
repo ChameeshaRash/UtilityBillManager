@@ -1,29 +1,43 @@
 package com.mobileapp.app;
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.fonts.FontFamily;
-import android.os.Build;
+import android.graphics.drawable.ColorDrawable;
+import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -38,10 +52,13 @@ public class Home extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     List<BillCard> billCardList;
     Adapter_BillCard adapter_BillCard;
-
+    BottomNavigationView bottomNavigationView;
     PieChart homePieChart;
 
+    ExtendedFloatingActionButton addBillFAB;
+
     private ImageButton imgProfile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +66,54 @@ public class Home extends AppCompatActivity {
         //status bar color change
        // getWindow().setStatusBarColor(this.getResources().getColor(R.color.white));
         setContentView(R.layout.activity_home);
+
+
+        //Add bill FAB
+        addBillFAB = findViewById(R.id.fabAddBill);
+        addBillFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showDialog();
+
+            }
+        });
+
+
+        //bottom navigation
+
+        bottomNavigationView = findViewById(R.id.bottomNavigator);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+
+                    case R.id.home:
+                        return true;
+
+                    case R.id.analytics:
+                        startActivity(new Intent(getApplicationContext(),Analytics.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.savedBills:
+                        startActivity(new Intent(getApplicationContext(),SavedBills.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.userProfile:
+                        startActivity(new Intent(getApplicationContext(),UserProfile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
 
 
         //homePieChart content
@@ -99,7 +164,7 @@ public class Home extends AppCompatActivity {
         homePieChart.animateY(1000, Easing.EaseInOutCirc);
 
 
-        PieDataSet dataSet = new PieDataSet(yValues," ");
+        PieDataSet dataSet = new PieDataSet(yValues,"");
         dataSet.setSliceSpace(4f);
         dataSet.setSelectionShift(0f);
         dataSet.setColors(pieColors);
@@ -112,11 +177,6 @@ public class Home extends AppCompatActivity {
         homePieChart.setData(data);
 
 
-
-
-
-
-
         //recyclerview content
         initData();
         initRecyclerView();
@@ -127,13 +187,104 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Home.this,Profile.class));
+                startActivity(new Intent(Home.this, UserProfile.class));
 
             }
         });
 
 
     }
+
+
+    //add Bill bottom sheet
+    private void showDialog() {
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.add_bill_layout);
+
+        final RadioGroup utilityType = dialog.findViewById(R.id.utilitySelection);
+
+
+        final EditText amount = dialog.findViewById(R.id.billAmount);
+        Button addBill = dialog.findViewById(R.id.btnAddBill);
+
+
+
+        final EditText date = dialog.findViewById(R.id.dateInput);
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final DatePickerDialog datePickerDialog;
+
+                datePickerDialog = new DatePickerDialog(Home.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        date.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                    }
+                },year,month,day);
+
+                datePickerDialog.show();
+            }
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+        DAOUtilityBill daoUtilityBill = new DAOUtilityBill();
+
+        addBill.setOnClickListener(v->{
+
+            final RadioButton utility = dialog.findViewById(utilityType.getCheckedRadioButtonId());
+
+            UtilityBill utilityBill = new UtilityBill(
+                    utility.getText().toString(),
+                    Float.parseFloat(amount.getText().toString()),
+                    date.getText().toString());
+
+
+            daoUtilityBill.add(utilityBill).addOnSuccessListener(suc->{
+
+                Toast.makeText(this,"Bill Added!",Toast.LENGTH_SHORT).show();
+
+            }).addOnFailureListener(er->{
+
+                Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
+
+            });
+
+        });
+
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+
+
+
+
+
+    }
+
+
 
 
 
@@ -145,16 +296,16 @@ public class Home extends AppCompatActivity {
     private void initData() {
 
         billCardList = new ArrayList<>();
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_water, "Water - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_electricity, "Electricity - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_fuel, "Fuel - August","Rs. 3,200","31.08.2022"));
-        billCardList.add(new BillCard(R.drawable.ic_internet, "Internet - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Electricity - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Fuel - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Internet - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Water - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Electricity - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Fuel - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Internet - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Electricity - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Fuel - August","Rs. 3,200","31.08.2022"));
+        billCardList.add(new BillCard("Internet - August","Rs. 3,200","31.08.2022"));
 
 
 
@@ -169,6 +320,7 @@ public class Home extends AppCompatActivity {
         recyclerView_Home.setLayoutManager(linearLayoutManager);
         adapter_BillCard = new Adapter_BillCard(billCardList);
         recyclerView_Home.setAdapter(adapter_BillCard);
+        recyclerView_Home.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         adapter_BillCard.notifyDataSetChanged();
 
 

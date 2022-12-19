@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bottmsheet_bg">
+
+    <RelativeLayout
+
+        android:id="@+id/addBillContainer"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:paddingTop="48dp"
+        android:paddingHorizontal="48dp">
+
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgAddBill"-->
+<!--            android:layout_width="180dp"-->
+<!--            android:layout_height="180dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            app:srcCompat="@drawable/img_add_bill" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtTitle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/imgAddBill"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:paddingTop="16dp"-->
+<!--            android:text="You got a bill?"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Title"-->
+<!--            android:textColor="@color/grey_100"-->
+<!--            tools:layout_editor_absoluteX="28dp"-->
+<!--            tools:layout_editor_absoluteY="59dp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/txtSubTitle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="8dp"-->
+<!--            android:text="Let’s add it up."-->
+<!--            android:textColor="@color/grey_60"-->
+<!--            android:layout_below="@id/txtTitle"-->
+<!--            tools:layout_editor_absoluteX="28dp"-->
+<!--            tools:layout_editor_absoluteY="59dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"-->
+<!--            />-->
+
+
+        <TextView
+            android:id="@+id/textView_Utility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Utility"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+            <RadioGroup
+                android:id="@+id/utilitySelection"
+                android:layout_below="@id/textView_Utility"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="fill_horizontal"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                android:divider="@color/transparent"
+                android:dividerPadding="24dp"
+                android:checkedButton="@id/billTypeElectricity">
+
+                <RadioButton
+
+                    android:id="@+id/billTypeElectricity"
+                    android:text="Electricity"
+                    android:textSize="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/utility_type_selector"
+                    android:button="@color/blue"
+                    android:drawableStart="@drawable/ic_add_electricity"
+                    android:minWidth="64dp"
+                    android:minHeight="64dp"
+                    android:maxWidth="64dp"
+                    android:maxHeight="64dp"
+                    android:paddingLeft="16dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <RadioButton
+                    android:id="@+id/billTypeInternet"
+                    android:text="Internet"
+                    android:textSize="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/utility_type_selector"
+                    android:button="@color/transparent"
+                    android:drawableStart="@drawable/ic_add_internet"
+                    android:minWidth="64dp"
+                    android:minHeight="64dp"
+                    android:maxWidth="64dp"
+                    android:maxHeight="64dp"
+                    android:paddingLeft="16dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <RadioButton
+                    android:id="@+id/billTypeWater"
+                    android:text="Water"
+                    android:textSize="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/utility_type_selector"
+                    android:button="@color/transparent"
+                    android:drawableStart="@drawable/ic_add_water"
+                    android:minWidth="64dp"
+                    android:minHeight="64dp"
+                    android:maxWidth="64dp"
+                    android:maxHeight="64dp"
+                    android:paddingLeft="16dp"
+                    android:layout_marginBottom="16dp"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <RadioButton
+                    android:id="@+id/billTypeFuel"
+                    android:text="Fuel"
+                    android:textSize="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/utility_type_selector"
+                    android:button="@color/transparent"
+                    android:drawableStart="@drawable/ic_add_fuel"
+                    android:minWidth="64dp"
+                    android:minHeight="64dp"
+                    android:maxWidth="64dp"
+                    android:maxHeight="64dp"
+                    android:paddingLeft="16dp" />
+
+
+            </RadioGroup>
+
+        
+        
+        <TextView
+            android:id="@+id/textView_Amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/utilitySelection"
+            android:text="Amount"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="80dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/currencyInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_Amount"
+            android:background="@drawable/shape_border_and_background"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16sp"
+            >
+
+
+
+            <EditText
+                android:id="@+id/billAmount"
+                android:layout_width="wrap_content"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:hint="0.00"
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="18dp" />
+
+            <TextView
+                android:id="@+id/currency"
+                android:maxLength="3"
+                android:minWidth="8dp"
+                android:layout_width="8dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="LKR"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textView_Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currencyInput"
+            android:text="Date"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="28dp"
+            tools:layout_editor_absoluteY="80dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/dateInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/textView_Date"
+            android:background="@drawable/shape_border_and_background"
+            android:drawableEnd="@drawable/ic_date"
+            android:hint="DD/MM/YYYY"
+            android:focusable="false"
+            android:inputType="none"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="18dp" />
+
+
+        <Button
+            android:id="@+id/btnAddBill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateInput"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/outlined_button_background"
+            android:paddingVertical="16dp"
+            android:text="Add Bill"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="16dp" />
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
