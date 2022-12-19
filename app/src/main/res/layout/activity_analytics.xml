@@ -116,73 +116,69 @@
                 android:paddingHorizontal="32dp"
                 android:paddingTop="16dp">
 
-                <RadioGroup
+
+                <LinearLayout
                     android:id="@+id/monthSelection"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="fill_horizontal"
                     android:orientation="horizontal"
-                    android:showDividers="middle"
-                    android:divider="@color/transparent"
-                    android:dividerPadding="24dp"
-                    android:checkedButton="@id/threeMonths"
-                    android:layout_alignParentTop="true">
+                    android:layout_alignParentTop="true"
+                    android:paddingVertical="4dp"
+                    android:paddingHorizontal="8dp">
 
-                    <RadioButton
-
+                    <Button
                         android:id="@+id/threeMonths"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/date_range_selector"
-                        android:button="@color/blue"
                         android:fontFamily="@font/inter_semibold"
-                        android:paddingHorizontal="24dp"
+                        android:paddingHorizontal="16dp"
                         android:paddingVertical="16dp"
-                        android:text="3 Months"
+                        android:layout_weight="1"
+                        android:textColor="@color/grey_100"
+                        android:backgroundTint="@color/yellow_60"
+                        android:text="3M"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="24dp"/>
+
+
+                    <Button
+                        android:id="@+id/sixMonths"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="16dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/grey_100"
+                        android:backgroundTint="@color/white"
+                        android:text="6M"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="24dp"/>
+
+
+
+                    <Button
+                        android:id="@+id/oneYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="16dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/grey_100"
+                        android:backgroundTint="@color/white"
+                        android:text="1Y"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
 
-                    <RadioButton
-
-                        android:id="@+id/sixMonths"
-                        android:text="6 Months"
-                        android:textSize="16dp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/date_range_selector"
-                        android:button="@color/blue"
-                        android:paddingVertical="16dp"
-                        android:paddingHorizontal="24dp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-
-                    <RadioButton
-
-                        android:id="@+id/oneYear"
-                        android:text="1 Year"
-                        android:textSize="16dp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/date_range_selector"
-                        android:button="@color/blue"
-                        android:paddingVertical="16dp"
-                        android:paddingHorizontal="24dp"/>
+                </LinearLayout>
 
 
 
-                </RadioGroup>
 
                 <!--Half pie Chart-->
                 <com.github.mikephil.charting.charts.PieChart
