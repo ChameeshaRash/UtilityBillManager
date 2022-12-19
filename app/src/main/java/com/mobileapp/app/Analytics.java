@@ -107,7 +107,6 @@ public class Analytics extends AppCompatActivity {
         });
 
         //process to show history list
-
         //retrieve data
         recyclerViewHome = (RecyclerView) findViewById(R.id.recyclerView_Home);
         recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
@@ -120,126 +119,9 @@ public class Analytics extends AppCompatActivity {
         savedbillAdapterAnalytics = new SavedBillsAdapter(options);
         recyclerViewHome.setAdapter(savedbillAdapterAnalytics);
 
-
-
-//        radioButton_sixMonth.setOnClickListener(d-> {
-//
-//            //retrieve data
-//            recyclerViewHome = (RecyclerView) findViewById(R.id.recyclerView_Home);
-//            recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
-//
-//            FirebaseRecyclerOptions<SavedBillsModel> options =
-//                    new FirebaseRecyclerOptions.Builder<SavedBillsModel>()
-//                            .setQuery(FirebaseDatabase.getInstance().getReference().child("UtilityBill").child("" + uid), SavedBillsModel.class)
-//                            .build();
-//
-//            savedbillAdapterAnalytics = new SavedBillsAdapter(options);
-//            recyclerViewHome.setAdapter(savedbillAdapterAnalytics);
-//
-//
-//        });
-//        radioButton_Year.setOnClickListener(e-> {
-//
-//            //retrieve data
-//            recyclerViewHome = (RecyclerView) findViewById(R.id.recyclerView_Home);
-//            recyclerViewHome.setLayoutManager(new LinearLayoutManager(this));
-//
-//            FirebaseRecyclerOptions<SavedBillsModel> options =
-//                    new FirebaseRecyclerOptions.Builder<SavedBillsModel>()
-//                            .setQuery(FirebaseDatabase.getInstance().getReference().child("UtilityBill").child("" + uid), SavedBillsModel.class)
-//                            .build();
-//
-//            savedbillAdapterAnalytics = new SavedBillsAdapter(options);
-//            recyclerViewHome.setAdapter(savedbillAdapterAnalytics);
-//
-//
-//        });
-
-
-
-
-
-
         //show total
         mAuth=FirebaseAuth.getInstance();
-        //filter by date-------------------------
-
-//        mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
-//            @SuppressLint("SetTextI18n")
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                ArraySet<SavedBillsModel> savedBillList=new ArraySet<>();
-//                Double total = 0.00;
-//                Double totalElectricityAnalatics=0.00;
-//                Double totalWaterAnalatics=0.00;
-//                Double totalFuelAnalatics=0.00;
-//                Double totalInternetAnalatics=0.00;
-//                Calendar cal = Calendar.getInstance();
-//                int year = cal.get(Calendar.YEAR);
-//                int month = cal.get(Calendar.MONTH)+1;
-//
-//                for( DataSnapshot ds :snapshot.getChildren()) {
-//                    SavedBillsModel saved_bills = ds.getValue(SavedBillsModel.class);
-//
-//                    String sDate1=ds.child("date").toString();
-//                    String[] divide= sDate1.split("/");
-//                    String year1 = divide[2];
-//                    year1 = year1.replace(" }", "");
-//                    String month1 = divide[1];
-//                    String date = divide[0];//not use
-//
-//
-//                    if(Integer.toString(year).equals(year1)){
-//                        if(Integer.toString(month).equals(month1)){
-//                            assert saved_bills != null;
-//                            Double cost = (double) saved_bills.getAmount();
-//                            total = total + cost;
-//                            savedBillList.add(saved_bills);
-//
-//                            //calculate total for each category
-//
-//                            if(Objects.equals(saved_bills.getUtilityType(), "Electricity")){
-//                                totalElectricityAnalatics+=cost;
-//                            }else if(Objects.equals(saved_bills.getUtilityType(), "Water")){
-//                                totalWaterAnalatics+=cost;
-//                            }else if(Objects.equals(saved_bills.getUtilityType(), "Internet")){
-//                                totalInternetAnalatics+=cost;
-//                            }else if(Objects.equals(saved_bills.getUtilityType(), "Fuel")){
-//                                totalFuelAnalatics+=cost;
-//                            }
-//
-//                        }
-//
-//
-//                    }
-//
-//
-//
-//                }
-//
-//                //Log.d("TAG", total + "");
-//
-//                //display total
-//                ElectricTotal.setText(""+(decfor.format(totalElectricityAnalatics))+"\nLKR");
-//                WaterTotal.setText(""+(decfor.format(totalWaterAnalatics))+"\nLKR");
-//                InternetTotal.setText(""+(decfor.format(totalInternetAnalatics))+"\nLKR");
-//                FuelTotal.setText(""+(decfor.format(totalFuelAnalatics))+"\nLKR");
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//
-//        });
-
-
-        //for three months
-//        button_threeMonth.setOnClickListener(c-> {
-
-            //show total
-//            mAuth=FirebaseAuth.getInstance();
+         //for three months
             //filter by date-------------------------
 
             mDatabaseRef.child(""+uid).addValueEventListener(new ValueEventListener() {
@@ -289,28 +171,18 @@ public class Analytics extends AppCompatActivity {
 
                                 }
 
-
-                            
-
-
                         }
-
-
-
                     }
 
                     //Log.d("TAG", total + "");
 
                     //display total
-                    Log.d("total 33333333333elecAn", totalElectricityAnalatics + "");
-                    Log.d("total 33333333333elecAn", totalWaterAnalatics + "");
-                    Log.d("total 33333333333elecAn", totalInternetAnalatics + "");
-                    Log.d("total 33333333333elecAn", totalFuelAnalatics + "");
 
                     ElectricTotal.setText(""+(decfor.format(totalElectricityAnalatics))+"\nLKR");
                     WaterTotal.setText(""+(decfor.format(totalWaterAnalatics))+"\nLKR");
                     InternetTotal.setText(""+(decfor.format(totalInternetAnalatics))+"\nLKR");
                     FuelTotal.setText(""+(decfor.format(totalFuelAnalatics))+"\nLKR");
+
 
                 }
 
@@ -377,24 +249,12 @@ public class Analytics extends AppCompatActivity {
 
                             }
 
-
-
-
-
                         }
-
-
-
                     }
 
                     //Log.d("TAG", total + "");
 
                     //display total
-                    Log.d("total 33333333333elecAn", totalElectricityAnalatics + "");
-                    Log.d("total 33333333333elecAn", totalWaterAnalatics + "");
-                    Log.d("total 33333333333elecAn", totalInternetAnalatics + "");
-                    Log.d("total 33333333333elecAn", totalFuelAnalatics + "");
-
                     ElectricTotal.setText(""+(decfor.format(totalElectricityAnalatics))+"\nLKR");
                     WaterTotal.setText(""+(decfor.format(totalWaterAnalatics))+"\nLKR");
                     InternetTotal.setText(""+(decfor.format(totalInternetAnalatics))+"\nLKR");
@@ -444,9 +304,7 @@ public class Analytics extends AppCompatActivity {
 
 
                         if(Integer.toString(year).equals(year1)){
-
-//                            if( Integer.valueOf(month1)>=(month-6)){
-                                assert saved_bills != null;
+                             assert saved_bills != null;
                                 Double cost = (double) saved_bills.getAmount();
                                 total = total + cost;
                                 savedBillList1.add(saved_bills);
@@ -462,12 +320,6 @@ public class Analytics extends AppCompatActivity {
                                 }else if(Objects.equals(saved_bills.getUtilityType(), "Fuel")){
                                     totalFuelAnalatics+=cost;
                                 }
-
-//                            }
-
-
-
-
 
                         }
 
@@ -509,9 +361,6 @@ public class Analytics extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
         //bottom navigation
