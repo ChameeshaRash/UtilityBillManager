@@ -114,6 +114,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     if(user.isEmailVerified()){
                         //redirect to user profile
                         startActivity(new Intent(Login.this,Home.class));
+
                     }else {
                         user.sendEmailVerification();
                         Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
@@ -125,5 +126,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser()!=null){
+            Toast.makeText(Login.this,"Already Logged In !",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Login.this,Home.class));
+            finish();
+        }else {
+            Toast.makeText(Login.this,"You can login now !",Toast.LENGTH_SHORT).show();
+
+
+        }
     }
 }

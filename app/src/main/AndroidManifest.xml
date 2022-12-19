@@ -20,6 +20,12 @@
         <activity
             android:name=".UserProfile"
             android:exported="false" />
+      <activity
+            android:name=".Verify_Email"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false" />

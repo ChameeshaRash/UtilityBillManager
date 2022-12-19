@@ -130,8 +130,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
-                                                        startActivity(new Intent(Register.this,Login.class));
-                                                        Toast.makeText(Register.this, "User has been registered Successfully", Toast.LENGTH_LONG).show();
+                                                        startActivity(new Intent(Register.this,Verify_Email.class));//change the intent to authentication view except login
+                                                        //Toast.makeText(Register.this, "User has been registered Successfully.Please check the email to verify the account!", Toast.LENGTH_LONG).show();
+
                                                     } else {
                                                         Toast.makeText(Register.this, "Failed to Register.Try Again!", Toast.LENGTH_LONG).show();
 
@@ -164,5 +165,20 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser()!=null){
+            Toast.makeText(Register.this,"Please Log out !",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Register.this,Profile.class));
+            finish();
+        }else {
+            registerUser();
+            Toast.makeText(Register.this,"You can Register now !",Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }
