@@ -20,6 +20,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SavedBills extends AppCompatActivity {
 
-
+    private ImageButton imgProfile;
     ExtendedFloatingActionButton addBillFAB;
 
     //user
@@ -53,6 +54,19 @@ public class SavedBills extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_bills);
+
+
+        //catch the profile logo to make intent to profile page
+        imgProfile=(ImageButton) findViewById(R.id.imgProfileSavedBills);
+
+        imgProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SavedBills.this, UserProfile.class));
+
+            }
+        });
+
 
 
         //Add bill FAB

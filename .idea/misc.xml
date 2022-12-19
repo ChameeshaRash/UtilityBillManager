@@ -15,9 +15,17 @@
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_reset_password.xml" value="0.176" />
         <entry key="..\:/Users/chamr/Desktop/2App/UtilityBillManager/app/src/main/res/layout/activity_verify_email.xml" value="0.2097560975609756" />
-        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/layout/activity_analytics.xml" value="0.1" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/drawable/date_range_deselected.xml" value="0.2415" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/drawable/date_range_selected.xml" value="0.2415" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/drawable/date_range_selector.xml" value="0.2415" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/drawable/shape_border_and_background.xml" value="0.2415" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/drawable/utility_type_deselected.xml" value="0.2415" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/drawable/utility_type_selected.xml" value="0.2415" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/drawable/utility_type_selector.xml" value="0.2415" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/layout/activity_analytics.xml" value="0.264" />
         <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/layout/activity_saved_bills.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/chamr/Desktop/8App/UtilityBillManager/app/src/main/res/layout/add_bill_layout.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/drawable/buton_border.xml" value="0.196" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/drawable/shape_border.xml" value="0.175" />
         <entry key="..\:/Users/chamr/Desktop/App/app/src/main/res/layout/activity_bottomsheet_login.xml" value="0.264" />
