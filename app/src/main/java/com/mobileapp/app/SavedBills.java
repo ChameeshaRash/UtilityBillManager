@@ -40,13 +40,15 @@ public class SavedBills extends AppCompatActivity {
 
     ExtendedFloatingActionButton addBillFAB;
 
+    //user
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
+    RecyclerView recyclerView;
+    SavedBillsAdapter savedbillAdapter;
 
     BottomNavigationView bottomNavigationView;
 
-    RecyclerView recyclerView;
-    SavedBillsAdapter savedbillAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
