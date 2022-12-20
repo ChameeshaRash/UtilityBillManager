@@ -8,7 +8,7 @@ public class UtilityBill {
 
     public String date;
 
-    public  UtilityBill(){}
+
 
     public UtilityBill(String utilityType, float amount, String date) {
         this.utilityType = utilityType;
