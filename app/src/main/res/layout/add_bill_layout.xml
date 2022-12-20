@@ -13,7 +13,8 @@
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:paddingTop="48dp"
-        android:paddingHorizontal="48dp">
+        android:paddingHorizontal="48dp"
+        >
 
 
 <!--        <ImageView-->

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:paddingTop="64dp"
+        android:paddingTop="48dp"
         android:paddingHorizontal="48dp"
         tools:context=".Login">
 
@@ -31,6 +31,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="16dp"
             android:text="Welcome Back!"
+            android:fontFamily="@font/inter_semibold"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/grey_100"
             tools:layout_editor_absoluteX="28dp"
@@ -69,7 +70,7 @@
             android:layout_below="@id/textView_Email"
             android:background="@drawable/shape_border_and_background"
             android:ems="10"
-            android:hint="johndoe@example.com "
+            android:hint="yourmail@email.com"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="24dp"
             android:paddingVertical="18dp" />
@@ -80,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextEmailAddressLogin"
             android:padding="5dp"
+            android:layout_marginTop="16dp"
             android:text="Password"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -102,10 +104,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextPasswordLogin"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
-            android:text="Forgot Password?"
+            android:layout_marginTop="8dp"
             android:onClick="forgot_Password"
-
+            android:text="Forgot Password?"
+            android:textSize="14sp"
+            android:textColor="@color/grey_60"
             />
 
         <Button
@@ -116,7 +119,8 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="32dp"
             android:background="@drawable/outlined_button_background"
-            android:paddingVertical="16dp"
+            android:fontFamily="@font/inter_semibold"
+            android:paddingVertical="14dp"
             android:text="Login"
             android:textAllCaps="false"
             android:textSize="16sp"
@@ -127,14 +131,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/btnLogIn"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_marginTop="20dp">
+
             <View
-                android:layout_centerVertical="true"
                 android:id="@+id/leftLine"
-                android:layout_toStartOf="@+id/or"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/or"
                 android:background="@color/grey_10" />
 
             <TextView
@@ -196,7 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtBreaker"
             android:layout_centerInParent="true"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="Google Linking"
             android:src="@drawable/btn_google"
             android:textAllCaps="false"

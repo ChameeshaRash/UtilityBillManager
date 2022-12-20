@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    tools:context=".SavedBills">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="16dp">
 
         <!--    topBar-->
         <RelativeLayout
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
-            android:layout_marginBottom="32dp">
+            android:layout_marginBottom="16dp">
 
             <!--Image-->
             <androidx.cardview.widget.CardView
@@ -29,7 +30,7 @@
                 app:cardElevation="0dp">
 
                 <ImageButton
-                    android:id="@+id/imgProfile"
+                    android:id="@+id/imgProfileSavedBills"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="0dp"
@@ -45,25 +46,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/userImgContainer"
-                android:text="Hey, "
+                android:fontFamily="@font/inter_semibold"
+                android:text="Hello"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/userNamePrefix"
-                android:maxLength="64"
-                android:text="Ravi"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            <!--        <TextView-->
+            <!--            android:id="@+id/userName"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_toEndOf="@id/userNamePrefix"-->
+            <!--            android:maxLength="64"-->
+            <!--            android:text="Ravi"-->
+            <!--            android:textSize="16sp"-->
+            <!--            android:textStyle="bold" />-->
 
             <TextView
                 android:id="@+id/userNamesuffix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/userName"
+                android:layout_toEndOf="@id/userNamePrefix"
                 android:text=" 👋"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -76,10 +79,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/userNamePrefix"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 android:layout_toEndOf="@id/userImgContainer"
                 android:text="Let's track’em all."
-                android:textSize="12sp" />
+                android:textColor="@color/grey_80"
+                android:textSize="14sp" />
 
             <ImageButton
                 android:id="@+id/hamburgerMenu"
@@ -101,7 +105,8 @@
             android:layout_below="@id/topBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:layout_marginBottom="80dp">
 
 
             <RelativeLayout
@@ -109,7 +114,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="32dp"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+
+
+                >
 
 
 
@@ -117,7 +125,8 @@
                 <RelativeLayout
                     android:id="@+id/recentBillsContainer"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <TextView
                         android:id="@+id/txtRecentBills"
@@ -130,7 +139,7 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView_Home"
+                        android:id="@+id/recyclerView_SavedBills"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txtRecentBills"
@@ -166,6 +175,7 @@
             android:layout_marginEnd="16dp"
             android:background="@color/transparent"
             app:elevation="0dp"
+            app:itemRippleColor="@color/white"
             app:itemPaddingBottom="24dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"

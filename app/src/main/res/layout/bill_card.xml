@@ -4,30 +4,43 @@
     android:layout_height="wrap_content">
 
 
+    <RelativeLayout
+        android:id="@+id/billCardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp">
+
+
+        <ImageView
+            android:id="@+id/billTypeIconSavedBIlls"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+             />
 
 
         <RelativeLayout
-            android:id="@+id/billCardLayout"
+            android:id="@+id/billInfoContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="16dp">
+            android:layout_toEndOf="@id/billTypeIconSavedBIlls">
 
             <TextView
-                android:id="@+id/billTitle"
+                android:id="@+id/billTitleHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:maxLength="30"
                 android:text="Electricity - August"
                 android:textColor="@color/grey_100"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:maxLength="30"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/billAmount"
+                android:id="@+id/billAmountHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -37,21 +50,22 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/billDate"
+                android:id="@+id/billDateHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/billTitleHistory"
                 android:layout_alignParentLeft="true"
+                android:layout_marginTop="4dp"
+                android:maxLength="10"
                 android:text="31.08.2022"
                 android:textColor="@color/grey_60"
-                android:layout_below="@id/billTitle"
-                android:layout_marginTop="4dp"
-                android:textSize="16sp"
-                android:maxLength="10"/>
+                android:textSize="16sp" />
 
 
         </RelativeLayout>
 
 
+    </RelativeLayout>
 
 
 

@@ -6,17 +6,27 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -26,6 +36,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private TextView forgotPassword;
 
+
+    ImageButton btnSignInwithGoogle;
+    private GoogleSignInClient client;
 
     private FirebaseAuth mAuth;
 
@@ -53,7 +66,63 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         forgotPassword.setOnClickListener(this);
 
 
+        //catch the sign up with google button
+        btnSignInwithGoogle=(ImageButton) findViewById(R.id.btn_LoginByGmail);
+        GoogleSignInOptions options=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        client= GoogleSignIn.getClient(this,options);
+        btnSignInwithGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentToSignUpwithGoogle=client.getSignInIntent();
+                startActivityForResult(intentToSignUpwithGoogle,1234);
+            }
+        });
+
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1234){
+            Task<GoogleSignInAccount> task=GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account=task.getResult(ApiException.class);
+                AuthCredential credintial= GoogleAuthProvider.getCredential(account.getIdToken(),null);
+                FirebaseAuth.getInstance().signInWithCredential(credintial)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+
+                                    //creating firebase object
+                                    FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+
+                                    if(user.isEmailVerified()){
+                                        //redirect to user profile
+                                        Intent intenttoSignIn=new Intent(getApplicationContext(),Home.class);
+                                        startActivity(intenttoSignIn);
+                                    }else {
+                                        user.sendEmailVerification();
+                                        Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
+                                    }
+
+                                }else{
+                                    Toast.makeText(Login.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
 
     @Override
     public void onResume() {
@@ -114,7 +183,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     if(user.isEmailVerified()){
                         //redirect to user profile
                         startActivity(new Intent(Login.this,Home.class));
-
                     }else {
                         user.sendEmailVerification();
                         Toast.makeText(Login.this,"Check your email to verify your account!",Toast.LENGTH_LONG).show();
@@ -127,7 +195,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         });
 
     }
-
     @Override
     protected void onStart() {
         super.onStart();
